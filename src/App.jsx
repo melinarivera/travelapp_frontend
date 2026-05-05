@@ -1,7 +1,9 @@
+import AuthPage from './pages/AuthPage'
+
 function App() {
   return (
     <div>
-      <h1>TravelApp</h1>
+      <AuthPage />
     </div>
   )
 }
