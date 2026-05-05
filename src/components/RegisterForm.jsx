@@ -1,11 +1,15 @@
+import styles from './RegisterForm.module.css'
+
 function RegisterForm({ onSwitch }) {
   return (
-    <div>
-      <h2>Crear cuenta</h2>
-      <input type="email" placeholder="Correo electrónico" />
-      <input type="password" placeholder="Contraseña" />
-      <button>Registrarse</button>
-      <p onClick={onSwitch}>¿Ya tienes cuenta? Inicia sesión</p>
+    <div className={styles.contenedor}>
+      <h2 className={styles.titulo}>Crear cuenta</h2>
+      <input className={styles.input} type="email" placeholder="Correo electrónico" />
+      <input className={styles.input} type="password" placeholder="Contraseña" />
+      <button className={styles.boton}>Registrarse</button>
+      <p className={styles.enlace} onClick={onSwitch}>
+        ¿Ya tienes cuenta? <span>Inicia sesión</span>
+      </p>
     </div>
   )
 }

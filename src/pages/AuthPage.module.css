@@ -1,0 +1,43 @@
+.pagina {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f7f4;
+  padding: 20px;
+}
+
+.contenedor {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logo {
+  text-align: center;
+}
+
+.logoTexto {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.logoSubtitulo {
+  font-size: 0.9rem;
+  color: #888;
+  margin: 4px 0 0 0;
+}
+
+.tarjeta {
+  background: white;
+  border-radius: 16px;
+  padding: 40px 32px;
+  width: 100%;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
