@@ -60,3 +60,43 @@
   font-weight: 600;
   text-decoration: underline;
 }
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputWrapper .input {
+  width: 100%;
+  padding-right: 44px;
+}
+
+.ojito {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.ojito:hover {
+  color: #1a1a1a;
+}
+
+.olvidaste {
+  text-align: right;
+  font-size: 0.82rem;
+  color: #888;
+  cursor: pointer;
+  margin: -8px 0 0 0;
+  transition: color 0.2s;
+}
+
+.olvidaste:hover {
+  color: #1a1a1a;
+}

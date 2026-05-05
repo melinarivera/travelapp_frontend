@@ -60,3 +60,55 @@
   font-weight: 600;
   text-decoration: underline;
 }
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputWrapper .input {
+  width: 100%;
+  padding-right: 44px;
+}
+
+.ojito {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.ojito:hover {
+  color: #1a1a1a;
+}
+
+.validaciones {
+  list-style: none;
+  padding: 0;
+  margin: -8px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cumple {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #16a34a;
+}
+
+.noCumple {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #dc2626;
+}
