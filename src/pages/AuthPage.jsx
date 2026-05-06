@@ -10,7 +10,7 @@ function AuthPage() {
     <div className={styles.pagina}>
       <div className={styles.contenedor}>
         <div className={styles.logo}>
-          <h1 className={styles.logoTexto}>TravelMates</h1>
+          <h1 className={styles.logoTexto}>TravelApp</h1>
           <p className={styles.logoSubtitulo}>Viaja en grupo de forma sencilla y organizada</p>
         </div>
         <div className={styles.tarjeta}>
