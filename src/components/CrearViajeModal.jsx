@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import api from '../api'
 import styles from './CrearViajeModal.module.css'
 
 function CrearViajeModal({ onCerrar, onViajeCreado }) {
@@ -25,10 +26,20 @@ function CrearViajeModal({ onCerrar, onViajeCreado }) {
     setError('')
 
     try {
-      // aqui va la logica de crear viaje
-      console.log({ titulo, destino, fechaInicio, fechaFin, imagen })
+      const formData = new FormData()
+      formData.append('titulo', titulo)
+      formData.append('destino', destino)
+      formData.append('fecha_inicio', fechaInicio)
+      formData.append('fecha_fin', fechaFin)
+      if (imagen) formData.append('imagen', imagen)
+
+      await api.post('/api/viajes', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
+
+      onViajeCreado()
     } catch (err) {
-      setError('Error al crear el viaje')
+      setError(err.response?.data?.error || 'Error al crear el viaje')
     } finally {
       setCargando(false)
     }
@@ -43,7 +54,6 @@ function CrearViajeModal({ onCerrar, onViajeCreado }) {
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
-          
           <div className={styles.imagenUpload} onClick={() => document.getElementById('inputImagen').click()}>
             {preview
               ? <img src={preview} alt="preview" className={styles.preview} />
@@ -113,7 +123,6 @@ function CrearViajeModal({ onCerrar, onViajeCreado }) {
           <button className={styles.btnCrear} disabled={cargando}>
             {cargando ? 'Creando...' : 'Crear viaje'}
           </button>
-
         </form>
       </div>
     </div>
