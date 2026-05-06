@@ -100,3 +100,14 @@
 .olvidaste:hover {
   color: #1a1a1a;
 }
+.error {
+  font-size: 0.85rem;
+  color: #dc2626;
+  text-align: center;
+  margin: 0;
+}
+
+.boton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
