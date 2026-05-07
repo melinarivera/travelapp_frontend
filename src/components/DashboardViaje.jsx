@@ -4,7 +4,7 @@ import styles from './DashboardViaje.module.css';
 const DashboardViaje = () => {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Dashboard de la Viaje</h1>
+      <h1 className={styles.title}>Dashboard del Viaje</h1>
       
       <div className={styles.grid}>
         <div className={styles.card}>
