@@ -1,6 +1,11 @@
+import { useState } from 'react'
+import api from '../api'
 import styles from './ViajeCard.module.css'
 
-function ViajeCard({ viaje }) {
+function ViajeCard({ viaje, onActualizado }) {
+  const [estado, setEstado] = useState(viaje.estado)
+  const [cargando, setCargando] = useState(false)
+
   const estados = {
     planificacion: 'Planificación',
     en_curso: 'En curso',
@@ -15,6 +20,19 @@ function ViajeCard({ viaje }) {
     })
   }
 
+  const handleEstado = async (nuevoEstado) => {
+  
+    setCargando(true)
+    try {
+      await api.patch(`/api/viajes/${viaje.id}`, { estado: nuevoEstado })
+      setEstado(nuevoEstado)
+      if (onActualizado) onActualizado()
+    } catch (err) {
+    } finally {
+      setCargando(false)
+    }
+  }
+
   return (
     <div className={styles.card}>
       <div className={styles.imagen}>
@@ -22,8 +40,8 @@ function ViajeCard({ viaje }) {
           ? <img src={viaje.imagen_url} alt={viaje.titulo} />
           : <div className={styles.sinImagen}>📍</div>
         }
-        <span className={`${styles.estado} ${styles[viaje.estado]}`}>
-          {estados[viaje.estado]}
+        <span className={`${styles.estado} ${styles[estado]}`}>
+          {estados[estado]}
         </span>
       </div>
 
@@ -33,6 +51,18 @@ function ViajeCard({ viaje }) {
         <p className={styles.fechas}>
           {formatearFecha(viaje.fecha_inicio)} → {formatearFecha(viaje.fecha_fin)}
         </p>
+
+        <select
+          className={styles.selectEstado}
+          value={estado}
+          onChange={e => handleEstado(e.target.value)}
+          disabled={cargando}
+        >
+          <option value="planificacion">Planificación</option>
+          <option value="en_curso">En curso</option>
+          <option value="finalizado">Finalizado</option>
+        </select>
+
         <button className={styles.btnEntrar}>Entrar al viaje</button>
       </div>
     </div>
