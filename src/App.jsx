@@ -3,6 +3,8 @@ import { useAuth } from './context/AuthContext'
 import AuthPage from './pages/AuthPage'
 import Dashboard from './pages/Dashboard'
 
+import DashboardViaje from './components/DashboardViaje' 
+
 function RutaProtegida({ children }) {
   const { usuario, cargando } = useAuth()
   
@@ -17,11 +19,21 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AuthPage />} />
+        
+        
         <Route path="/dashboard" element={
           <RutaProtegida>
             <Dashboard />
           </RutaProtegida>
         } />
+
+       
+        <Route path="/dashboard-viaje" element={
+          <RutaProtegida>
+            <DashboardViaje />
+          </RutaProtegida>
+        } />
+
       </Routes>
     </BrowserRouter>
   )
