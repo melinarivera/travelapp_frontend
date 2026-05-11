@@ -1,11 +1,30 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useAuth } from '../context/AuthContext'
+import Integrantes from '../components/Integrantes'
+import api from '../api'
 import styles from './ViajePage.module.css'
 
 function ViajePage() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const { usuario } = useAuth()
   const [seccionActiva, setSeccionActiva] = useState('integrantes')
+  const [viaje, setViaje] = useState(null)
+
+  useEffect(() => {
+    const cargarViaje = async () => {
+      try {
+        const res = await api.get(`/api/viajes/${id}`)
+        setViaje(res.data.viaje)
+      } catch (err) {
+        console.error('Error al cargar viaje:', err)
+      }
+    }
+    cargarViaje()
+  }, [id])
+
+  const esTitular = viaje?.titular_id === usuario?.id
 
   const secciones = [
     { id: 'integrantes', label: 'Integrantes' },
@@ -20,7 +39,7 @@ function ViajePage() {
         <button className={styles.btnVolver} onClick={() => navigate('/dashboard')}>
           ← Volver
         </button>
-        <h1 className={styles.titulo}>Mi viaje</h1>
+        <h1 className={styles.titulo}>{viaje?.titulo || 'Mi viaje'}</h1>
       </header>
 
       <nav className={styles.menu}>
@@ -36,7 +55,9 @@ function ViajePage() {
       </nav>
 
       <main className={styles.contenido}>
-        {seccionActiva === 'integrantes' && <p>Sección integrantes</p>}
+        {seccionActiva === 'integrantes' && (
+          <Integrantes viajeId={id} esTitular={esTitular} />
+        )}
         {seccionActiva === 'documentos' && <p>Sección tickets y documentos</p>}
         {seccionActiva === 'itinerario' && <p>Sección itinerario</p>}
         {seccionActiva === 'mapa' && <p>Sección mapa y POI</p>}
