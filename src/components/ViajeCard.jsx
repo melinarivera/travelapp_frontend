@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import api from '../api'
 import styles from './ViajeCard.module.css'
 
 function ViajeCard({ viaje, onActualizado }) {
   const [estado, setEstado] = useState(viaje.estado)
   const [cargando, setCargando] = useState(false)
+  const navigate = useNavigate()
 
   const estados = {
     planificacion: 'Planificación',
@@ -21,13 +23,13 @@ function ViajeCard({ viaje, onActualizado }) {
   }
 
   const handleEstado = async (nuevoEstado) => {
-  
     setCargando(true)
     try {
       await api.patch(`/api/viajes/${viaje.id}`, { estado: nuevoEstado })
       setEstado(nuevoEstado)
       if (onActualizado) onActualizado()
     } catch (err) {
+      console.error('Error al actualizar estado:', err)
     } finally {
       setCargando(false)
     }
@@ -63,7 +65,12 @@ function ViajeCard({ viaje, onActualizado }) {
           <option value="finalizado">Finalizado</option>
         </select>
 
-        <button className={styles.btnEntrar}>Entrar al viaje</button>
+        <button
+          className={styles.btnEntrar}
+          onClick={() => navigate(`/viaje/${viaje.id}`)}
+        >
+          Entrar al viaje
+        </button>
       </div>
     </div>
   )
