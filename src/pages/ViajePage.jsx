@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import Integrantes from '../components/Integrantes'
+import Itinerario from '../components/Itinerario'
 import api from '../api'
 import styles from './ViajePage.module.css'
 
@@ -31,6 +32,7 @@ function ViajePage() {
     { id: 'documentos', label: 'Tickets & Docs' },
     { id: 'itinerario', label: 'Itinerario' },
     { id: 'mapa', label: 'Mapa & POI' },
+    
   ]
 
   return (
@@ -55,12 +57,25 @@ function ViajePage() {
       </nav>
 
       <main className={styles.contenido}>
+               
         {seccionActiva === 'integrantes' && (
           <Integrantes viajeId={id} esTitular={esTitular} />
         )}
-        {seccionActiva === 'documentos' && <p>Sección tickets y documentos</p>}
-        {seccionActiva === 'itinerario' && <p>Sección itinerario</p>}
-        {seccionActiva === 'mapa' && <p>Sección mapa y POI</p>}
+
+        {seccionActiva === 'documentos' && (
+          <p>Sección tickets y documentos</p>
+        )}
+
+        {seccionActiva === 'itinerario' && (
+          <Itinerario 
+            viaje={viaje} 
+            esAdmin={esTitular} 
+          />
+        )}
+
+        {seccionActiva === 'mapa' && (
+          <p>Sección mapa y POI</p>
+        )}
       </main>
     </div>
   )
