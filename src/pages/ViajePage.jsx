@@ -2,9 +2,11 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import Integrantes from '../components/Integrantes'
+import Itinerario from '../components/Itinerario'
+import MapaPOI from '../components/MapaPOI'
+import TicketsYDocs from '../components/TicketsYDocs'
 import api from '../api'
 import styles from './ViajePage.module.css'
-import TicketsYDocs from '../components/TicketsYDocs'
 
 function ViajePage() {
   const { id } = useParams()
@@ -59,9 +61,15 @@ function ViajePage() {
         {seccionActiva === 'integrantes' && (
           <Integrantes viajeId={id} esTitular={esTitular} />
         )}
-        {seccionActiva === 'documentos' && <TicketsYDocs viajeId={id} esTitular={esTitular} />}
-        {seccionActiva === 'itinerario' && <p>Sección itinerario</p>}
-        {seccionActiva === 'mapa' && <p>Sección mapa y POI</p>}
+        {seccionActiva === 'documentos' && (
+          <TicketsYDocs viajeId={id} esTitular={esTitular} />
+        )}
+        {seccionActiva === 'itinerario' && (
+          <Itinerario viaje={viaje} esAdmin={esTitular} />
+        )}
+        {seccionActiva === 'mapa' && (
+          <MapaPOI viajeId={id} />
+        )}
       </main>
     </div>
   )
