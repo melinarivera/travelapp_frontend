@@ -3,6 +3,7 @@ import { useAuth } from './context/AuthContext'
 import AuthPage from './pages/AuthPage'
 import Dashboard from './pages/Dashboard'
 import ViajePage from './pages/ViajePage'
+import MapaPOI from './components/MapaPOI';
 
 function RutaProtegida({ children }) {
   const { usuario, cargando } = useAuth()
@@ -26,6 +27,12 @@ function App() {
             <ViajePage />
           </RutaProtegida>
         } />
+        <Route path="/viaje/:id/mapa" element={
+          <RutaProtegida>
+            <MapaPOI />
+          </RutaProtegida>
+        } />
+        
       </Routes>
     </BrowserRouter>
   )
