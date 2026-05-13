@@ -65,7 +65,7 @@ function Dashboard() {
             <p className={styles.sinViajes}>Todavía no tienes viajes. ¡Crea el primero!</p>
           ) : (
             viajes.map(viaje => (
-              <ViajeCard key={viaje.id} viaje={viaje} />
+              <ViajeCard key={viaje.id} viaje={viaje} usuarioId={usuario?.id} />
             ))
           )}
         </div>

@@ -113,3 +113,22 @@
 .selectEstado:focus {
   border-color: #1a1a1a;
 }
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.titular {
+  background: #111;
+  color: white;
+}
+
+.integrante {
+  background: #e8f4fd;
+  color: #2b6cb0;
+}
