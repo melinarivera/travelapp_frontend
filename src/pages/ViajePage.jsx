@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext'
 import Integrantes from '../components/Integrantes'
 import api from '../api'
 import styles from './ViajePage.module.css'
+import TicketsYDocs from '../components/TicketsYDocs'
 
 function ViajePage() {
   const { id } = useParams()
@@ -58,7 +59,7 @@ function ViajePage() {
         {seccionActiva === 'integrantes' && (
           <Integrantes viajeId={id} esTitular={esTitular} />
         )}
-        {seccionActiva === 'documentos' && <p>Sección tickets y documentos</p>}
+        {seccionActiva === 'documentos' && <TicketsYDocs viajeId={id} esTitular={esTitular} />}
         {seccionActiva === 'itinerario' && <p>Sección itinerario</p>}
         {seccionActiva === 'mapa' && <p>Sección mapa y POI</p>}
       </main>
