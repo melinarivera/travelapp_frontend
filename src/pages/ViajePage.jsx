@@ -5,6 +5,7 @@ import Integrantes from '../components/Integrantes'
 import Itinerario from '../components/Itinerario'
 import api from '../api'
 import styles from './ViajePage.module.css'
+import MapaPOI from '../components/MapaPOI'
 
 function ViajePage() {
   const { id } = useParams()
@@ -32,7 +33,6 @@ function ViajePage() {
     { id: 'documentos', label: 'Tickets & Docs' },
     { id: 'itinerario', label: 'Itinerario' },
     { id: 'mapa', label: 'Mapa & POI' },
-    
   ]
 
   return (
@@ -74,7 +74,7 @@ function ViajePage() {
         )}
 
         {seccionActiva === 'mapa' && (
-          <p>Sección mapa y POI</p>
+          <MapaPOI viajeId={id} /> 
         )}
       </main>
     </div>

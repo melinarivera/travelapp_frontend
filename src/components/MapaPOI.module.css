@@ -1,0 +1,66 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.formNovo {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.btnAdicionar {
+  padding: 10px 20px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cardLugar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.nome {
+  font-weight: bold;
+  display: block;
+}
+
+.pontos {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.acoes {
+  display: flex;
+  gap: 8px;
+}
+
+.btnVoto {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btnVoto:hover {
+  background: #e2e6ea;
+}
