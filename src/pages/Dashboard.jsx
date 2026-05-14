@@ -7,7 +7,7 @@ import api from '../api'
 import styles from './Dashboard.module.css'
 
 function Dashboard() {
-  const { usuario, cerrarSesion } = useAuth()
+  const { usuario, perfil, cerrarSesion } = useAuth()
   const navigate = useNavigate()
   const [mostrarModal, setMostrarModal] = useState(false)
   const [viajes, setViajes] = useState([])
@@ -43,7 +43,10 @@ function Dashboard() {
       <header className={styles.header}>
         <h1 className={styles.logo}>TravelApp</h1>
         <div className={styles.headerDerecha}>
-          <span className={styles.email}>{usuario?.email}</span>
+          <span className={styles.email}>{perfil?.nombre || usuario?.email}</span>
+          <button className={styles.btnPerfil} onClick={() => navigate('/perfil')}>
+  Mi perfil
+</button>
           <button className={styles.btnCerrarSesion} onClick={handleCerrarSesion}>
             Cerrar sesión
           </button>

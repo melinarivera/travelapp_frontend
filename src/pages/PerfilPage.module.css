@@ -1,0 +1,30 @@
+.pagina {
+  min-height: 100vh;
+  background: #f8f7f4;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.btnVolver {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.titulo {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.contenido {
+  padding: 2rem 1rem;
+}
