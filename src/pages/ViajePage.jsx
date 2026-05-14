@@ -68,7 +68,7 @@ function ViajePage() {
           <Itinerario viaje={viaje} esAdmin={esTitular} />
         )}
         {seccionActiva === 'mapa' && (
-          <MapaPOI viajeId={id} />
+          <MapaPOI viajeId={id} esAdmin={esTitular} />
         )}
       </main>
     </div>
