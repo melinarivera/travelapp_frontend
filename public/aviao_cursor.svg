@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <g transform="translate(32, 32) rotate(-45) scale(1.6)">
+    <ellipse cx="0" cy="0" rx="4" ry="18" fill="#1a1a3e"/>
+    <ellipse cx="0" cy="-17" rx="2.5" ry="4" fill="#2c2c6e"/>
+    <rect x="-1.2" y="-12" width="2.4" height="1.2" rx="0.6" fill="#7ec8e3" opacity="0.9"/>
+    <rect x="-1.2" y="-9" width="2.4" height="1.2" rx="0.6" fill="#7ec8e3" opacity="0.9"/>
+    <rect x="-1.2" y="-6" width="2.4" height="1.2" rx="0.6" fill="#7ec8e3" opacity="0.9"/>
+    <rect x="-1.2" y="-3" width="2.4" height="1.2" rx="0.6" fill="#7ec8e3" opacity="0.9"/>
+    <path d="M-4,0 L-22,8 L-20,12 L-4,6 Z" fill="#2c2c6e"/>
+    <path d="M4,0 L22,8 L20,12 L4,6 Z" fill="#2c2c6e"/>
+    <path d="M-22,8 L-24,6 L-20,12 Z" fill="#e63946"/>
+    <path d="M22,8 L24,6 L20,12 Z" fill="#e63946"/>
+    <path d="M-1.5,12 L0,6 L1.5,12 L0,18 Z" fill="#e63946"/>
+    <path d="M-1.5,13 L-10,16 L-9,18 L-1.5,15 Z" fill="#2c2c6e"/>
+    <path d="M1.5,13 L10,16 L9,18 L1.5,15 Z" fill="#2c2c6e"/>
+    <ellipse cx="-12" cy="6" rx="2.5" ry="4" fill="#111133"/>
+    <ellipse cx="-12" cy="4" rx="2" ry="1.5" fill="#333366"/>
+    <ellipse cx="12" cy="6" rx="2.5" ry="4" fill="#111133"/>
+    <ellipse cx="12" cy="4" rx="2" ry="1.5" fill="#333366"/>
+  </g>
+</svg>
