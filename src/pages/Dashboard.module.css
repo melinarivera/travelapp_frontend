@@ -94,3 +94,22 @@
   font-size: 0.95rem;
   grid-column: 1 / -1;
 }
+
+.btnPerfil {
+  background: none;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btnPerfil:hover {
+  background: #f0f0f0;
+}
+
+.perfilPanel {
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1rem;
+}
