@@ -64,3 +64,126 @@
 .btnVoto:hover {
   background: #e2e6ea;
 }
+
+/* ===== ESTILOS DO MODAL DE ITINERÁRIO ===== */
+
+.btnAdmin {
+  background: none;
+  border: 1px solid #4a90d9;
+  color: #4a90d9;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s, color 0.2s;
+}
+.btnAdmin:hover {
+  background: #4a90d9;
+  color: #fff;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px 32px;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+.modal h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.modalLugarNome {
+  margin: 0;
+  font-size: 15px;
+  color: #444;
+  font-style: italic;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: -6px;
+}
+
+.modalInput {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #222;
+  background: #f7f7f7;
+  box-sizing: border-box;
+}
+.modalInput:focus {
+  outline: none;
+  border-color: #4a90d9;
+  background: #fff;
+}
+
+.mensagem {
+  margin: 0;
+  font-size: 14px;
+  color: #444;
+}
+
+.modalBtns {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.btnCancelar {
+  background: none;
+  border: 1px solid #ccc;
+  color: #666;
+  border-radius: 8px;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+.btnCancelar:hover {
+  border-color: #999;
+  color: #333;
+}
+
+.btnConfirmar {
+  background: #2c2c54;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.btnConfirmar:hover {
+  background: #3d3d7a;
+}
+.btnConfirmar:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
