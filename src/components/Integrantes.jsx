@@ -72,7 +72,7 @@ function Integrantes({ viajeId, esTitular }) {
         {integrantes.map(i => (
           <li key={i.id} className={styles.item}>
             <div className={styles.itemInfo}>
-<span className={styles.itemEmail}>{i.email}</span>
+<span className={styles.itemEmail}>{i.nombre || i.email}</span>
               <span className={`${styles.rol} ${styles[i.rol]}`}>{i.rol}</span>
             </div>
             {esTitular && i.rol !== 'titular' && (
