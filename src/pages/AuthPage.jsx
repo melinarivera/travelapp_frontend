@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import LoginForm from '../components/LoginForm'
 import RegisterForm from '../components/RegisterForm'
+import ContactForm from '../components/ContactForm'
 import styles from './AuthPage.module.css'
 
 function AuthPage() {
@@ -18,6 +19,9 @@ function AuthPage() {
             ? <LoginForm onSwitch={() => setMostrarLogin(false)} />
             : <RegisterForm onSwitch={() => setMostrarLogin(true)} />
           }
+        </div>
+        <div className={styles.contacto}>
+          <ContactForm />
         </div>
       </div>
     </div>

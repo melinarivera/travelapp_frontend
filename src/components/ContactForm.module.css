@@ -1,0 +1,95 @@
+.contenedor {
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem 2rem 2rem 2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.titulo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.subtitulo {
+  color: #888;
+  font-size: 0.82rem;
+  margin-bottom: 1rem;
+}
+
+.formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.input {
+  padding: 0.55rem 0.85rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  outline: none;
+  font-family: inherit;
+  background: #fafafa;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: #999;
+  background: white;
+}
+
+.textarea {
+  grid-column: 1 / -1;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  outline: none;
+  font-family: inherit;
+  background: #fafafa;
+  resize: none;
+  min-height: 80px;
+}
+
+.textarea:focus {
+  border-color: #999;
+  background: white;
+}
+
+.error {
+  grid-column: 1 / -1;
+  color: #e53e3e;
+  font-size: 0.8rem;
+}
+
+.btnEnviar {
+  grid-column: 1 / -1;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.btnEnviar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.exito {
+  background: #f0fff4;
+  border: 1px solid #9ae6b4;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  color: #276749;
+  font-size: 0.875rem;
+}
