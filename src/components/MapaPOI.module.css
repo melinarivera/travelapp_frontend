@@ -1,189 +1,105 @@
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-}
+/* ROXO #7c5cbf */
+.container { max-width: 640px; margin: 0 auto; padding: 0; }
 
-.formNovo {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
+.container h3 { font-size: 1.4rem; font-weight: 800; color: #1a1a2e; margin: 0 0 20px 0; letter-spacing: -0.3px; }
+
+.form { display: flex; gap: 10px; margin-bottom: 24px; }
 
 .input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  flex: 1; padding: 12px 16px; border: 1.5px solid #efefef; border-radius: 12px;
+  font-size: 0.95rem; background: white; outline: none;
+  transition: border-color 0.2s; font-family: inherit; color: #1a1a2e;
+}
+.input:focus { border-color: #7c5cbf; }
+
+.btn {
+  padding: 12px 22px;
+  background: linear-gradient(135deg, #7c5cbf 0%, #5a3d9e 100%);
+  color: white; border: none; border-radius: 12px; font-size: 0.9rem;
+  font-weight: 700; cursor: pointer; transition: opacity 0.2s, transform 0.1s;
+  white-space: nowrap; font-family: inherit;
+  box-shadow: 0 4px 12px rgba(124,92,191,0.35);
+}
+.btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.ranking { display: flex; flex-direction: column; gap: 10px; }
+
+.item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 20px; background: white; border: 1.5px solid #efefef;
+  border-radius: 14px; transition: border-color 0.2s, transform 0.15s;
+}
+.item:hover {
+  border-color: #7c5cbf; transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(124,92,191,0.1);
 }
 
-.btnAdicionar {
-  padding: 10px 20px;
-  background: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+.item span { font-size: 0.95rem; color: #1a1a2e; font-weight: 500; }
+.item span strong { color: #7c5cbf; font-weight: 700; }
 
-.cardLugar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
+.votos { display: flex; gap: 8px; align-items: center; }
 
-.nome {
-  font-weight: bold;
-  display: block;
+.votos button {
+  background: #f7f7fb; border: 1.5px solid #efefef; padding: 6px 12px;
+  border-radius: 20px; cursor: pointer; font-size: 0.85rem; font-weight: 600;
+  color: #888; transition: all 0.15s; display: flex; align-items: center;
+  gap: 4px; font-family: inherit;
 }
-
-.pontos {
-  font-size: 0.8rem;
-  color: #666;
-}
-
-.acoes {
-  display: flex;
-  gap: 8px;
-}
-
-.btnVoto {
-  background: #f8f9fa;
-  border: 1px solid #ddd;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.btnVoto:hover {
-  background: #e2e6ea;
-}
-
-/* ===== ESTILOS DO MODAL DE ITINERÁRIO ===== */
+.votos button:hover { background: #f0eeff; border-color: #7c5cbf; color: #7c5cbf; transform: scale(1.05); }
 
 .btnAdmin {
-  background: none;
-  border: 1px solid #4a90d9;
-  color: #4a90d9;
-  border-radius: 6px;
-  padding: 4px 8px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.2s, color 0.2s;
+  background: #f0eeff; border: none; color: #7c5cbf; border-radius: 20px;
+  padding: 6px 12px; cursor: pointer; font-size: 14px; font-weight: 600;
+  transition: background 0.2s, transform 0.15s; font-family: inherit;
 }
-.btnAdmin:hover {
-  background: #4a90d9;
-  color: #fff;
-}
+.btnAdmin:hover { background: #e4d9ff; transform: scale(1.05); }
 
 .modalOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+  position: fixed; inset: 0; background: rgba(26,26,46,0.5);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000; backdrop-filter: blur(6px);
 }
 
 .modal {
-  background: #fff;
-  border-radius: 12px;
-  padding: 28px 32px;
-  width: 100%;
-  max-width: 360px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  background: white; border-radius: 24px; padding: 36px 40px;
+  width: 100%; max-width: 400px; display: flex; flex-direction: column;
+  gap: 14px; box-shadow: 0 24px 64px rgba(0,0,0,0.15); border: 1.5px solid #efefef;
 }
 
-.modal h4 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 700;
-  color: #1a1a2e;
-}
+.modal h4 { margin: 0; font-size: 1.2rem; font-weight: 800; color: #1a1a2e; }
 
-.modalLugarNome {
-  margin: 0;
-  font-size: 15px;
-  color: #444;
-  font-style: italic;
-}
+.modalLugarNome { margin: 0; font-size: 0.95rem; color: #7c5cbf; font-weight: 600; font-style: italic; }
 
 .label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #555;
-  margin-bottom: -6px;
+  font-size: 0.78rem; font-weight: 700; color: #bbb;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: -8px;
 }
 
 .modalInput {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 15px;
-  color: #222;
-  background: #f7f7f7;
-  box-sizing: border-box;
+  width: 100%; padding: 12px 14px; border: 1.5px solid #efefef; border-radius: 12px;
+  font-size: 0.95rem; color: #1a1a2e; background: #f7f7fb;
+  box-sizing: border-box; font-family: inherit; outline: none; transition: border-color 0.2s;
+  color-scheme: light;
 }
-.modalInput:focus {
-  outline: none;
-  border-color: #4a90d9;
-  background: #fff;
-}
+.modalInput:focus { border-color: #7c5cbf; background: white; }
 
-.mensagem {
-  margin: 0;
-  font-size: 14px;
-  color: #444;
-}
+.mensagem { margin: 0; font-size: 0.88rem; color: #888; text-align: center; }
 
-.modalBtns {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-  margin-top: 4px;
-}
+.modalBtns { display: flex; gap: 10px; justify-content: flex-end; margin-top: 4px; }
 
 .btnCancelar {
-  background: none;
-  border: 1px solid #ccc;
-  color: #666;
-  border-radius: 8px;
-  padding: 8px 18px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: border-color 0.2s;
+  background: #f7f7fb; border: none; color: #aaa; border-radius: 12px;
+  padding: 10px 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600;
+  transition: all 0.2s; font-family: inherit;
 }
-.btnCancelar:hover {
-  border-color: #999;
-  color: #333;
-}
+.btnCancelar:hover { background: #efefef; color: #666; }
 
 .btnConfirmar {
-  background: #2c2c54;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 18px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  transition: background 0.2s;
+  background: linear-gradient(135deg, #7c5cbf 0%, #5a3d9e 100%);
+  color: white; border: none; border-radius: 12px; padding: 10px 22px;
+  cursor: pointer; font-size: 0.9rem; font-weight: 700;
+  transition: opacity 0.2s, transform 0.1s; font-family: inherit;
+  box-shadow: 0 4px 12px rgba(124,92,191,0.35);
 }
-.btnConfirmar:hover {
-  background: #3d3d7a;
-}
-.btnConfirmar:disabled {
-  background: #aaa;
-  cursor: not-allowed;
-}
+.btnConfirmar:hover { opacity: 0.9; transform: translateY(-1px); }
+.btnConfirmar:disabled { background: #ddd; box-shadow: none; cursor: not-allowed; transform: none; }

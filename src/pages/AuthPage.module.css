@@ -1,49 +1,311 @@
 .pagina {
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f8f7f4;
-  padding: 20px;
-}
-
-.contenedor {
-  width: 100%;
-  max-width: 480px;
-  display: flex;
   flex-direction: column;
-  gap: 24px;
-  align-items: center;
+  font-family: 'system-ui', sans-serif;
+  width: 100%;
+  background: #f7f7fb;
 }
 
-.logo {
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 64px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.navLogo {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #e8624a;
+  letter-spacing: -0.5px;
+}
+
+.navLinks {
+  display: flex;
+  gap: 32px;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: #e8624a;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.slideActivo {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.52) 0%,
+    rgba(0,0,0,0.15) 50%,
+    rgba(0,0,0,0.6) 100%
+  );
+}
+
+.slideCaption {
+  position: absolute;
+  top: 50%;
+  left: 64px;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin: 0;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+  letter-spacing: -1px;
+  max-width: 500px;
+  line-height: 1.2;
+  z-index: 2;
+}
+
+.slideDots {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.7);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.dotActivo {
+  background: #e8624a;
+  border-color: #e8624a;
+  transform: scale(1.3);
+}
+
+/* LOGIN CARD — vidro branco */
+.loginCard {
+  position: relative;
+  z-index: 10;
+  margin-right: 80px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 24px;
+  padding: 44px 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 16px 64px rgba(0,0,0,0.18);
+}
+
+/* SOBRE NOSOTROS */
+.sobreNosotros {
+  background: #ffffff;
+  padding: 96px 64px;
+}
+
+.sobreContenido {
+  max-width: 1000px;
+  margin: 0 auto;
   text-align: center;
 }
 
-.logoTexto {
-  font-size: 2rem;
+.badge {
+  display: inline-block;
+  background: #fff0ee;
+  color: #e8624a;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 99px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.sobreTitulo {
+  font-size: 2.4rem;
   font-weight: 800;
-  color: #1a1a1a;
-  margin: 0;
+  color: #1a1a2e;
+  margin: 0 0 16px 0;
   letter-spacing: -1px;
+  line-height: 1.2;
 }
 
-.logoSubtitulo {
-  font-size: 0.9rem;
+.sobreTexto {
+  font-size: 1rem;
   color: #888;
-  margin: 4px 0 0 0;
+  line-height: 1.75;
+  max-width: 600px;
+  margin: 0 auto 56px auto;
 }
 
-.tarjeta {
-  background: white;
+.features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.feature {
+  background: #f7f7fb;
+  border-radius: 60px;
+  padding: 32px 20px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 5px solid transparent;
+}
+
+.feature:nth-child(1) { border-color: #F0A020; } /* Itinerario — laranja */
+.feature:nth-child(2) { border-color: #2EBD8A; } /* Tickets — verde */
+.feature:nth-child(3) { border-color: #7c5cbf; } /* POI — roxo */
+.feature:nth-child(4) { border-color: #e8624a; } /* Integrantes — coral */
+
+.feature:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+}
+.featureIconWrap {
+  width: 56px;
+  height: 56px;
   border-radius: 16px;
-  padding: 40px 32px;
-  width: 100%;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px auto;
 }
 
-.contacto {
-  margin-top: 0;
-  width: 100%;
+.featureIcon {
+  font-size: 1.6rem;
+}
+
+.feature h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 8px 0;
+}
+
+.feature p {
+  font-size: 0.85rem;
+  color: #999;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.contactoSeccion {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d2040 100%);
+  padding: 96px 64px;
+  display: flex;
+  justify-content: center;
+  border-top: 1.5px solid #efefef;
+}
+
+/* FOOTER */
+.footer {
+  background: #1a1a2e;
+  color: white;
+  padding: 44px 64px;
+}
+
+.footerContenido {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+}
+
+.footerLogo {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #e8624a;
+  letter-spacing: -0.5px;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footerLink {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.footerLink:hover {
+  color: #e8624a;
+}
+
+.footerCopy {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.25);
+  margin: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .navbar { padding: 14px 24px; }
+  .hero { justify-content: center; align-items: flex-end; }
+  .loginCard { margin: 0 20px 40px 20px; max-width: 100%; }
+  .slideCaption { left: 24px; font-size: 1.8rem; top: 40%; }
+  .features { grid-template-columns: repeat(2, 1fr); }
+  .sobreNosotros, .contactoSeccion { padding: 56px 24px; }
+  .footer { padding: 36px 24px; }
+}
+
+@media (max-width: 480px) {
+  .features { grid-template-columns: 1fr; }
+  .navLinks { gap: 16px; }
+  .sobreTitulo { font-size: 1.8rem; }
 }

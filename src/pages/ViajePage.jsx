@@ -8,6 +8,13 @@ import TicketsYDocs from '../components/TicketsYDocs'
 import api from '../api'
 import styles from './ViajePage.module.css'
 
+const SECCIONES = [
+  { id: 'integrantes', label: 'Integrantes', color: '#e8624a' },
+  { id: 'documentos',  label: 'Tickets & Docs', color: '#2EBD8A' },
+  { id: 'itinerario',  label: 'Itinerario', color: '#F0A020' },
+  { id: 'mapa',        label: 'Mapa & POI', color: '#7c5cbf' },
+]
+
 function ViajePage() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -28,16 +35,11 @@ function ViajePage() {
   }, [id])
 
   const esTitular = viaje?.titular_id === usuario?.id
-
-  const secciones = [
-    { id: 'integrantes', label: 'Integrantes' },
-    { id: 'documentos', label: 'Tickets & Docs' },
-    { id: 'itinerario', label: 'Itinerario' },
-    { id: 'mapa', label: 'Mapa & POI' },
-  ]
+  const colorActivo = SECCIONES.find(s => s.id === seccionActiva)?.color || '#e8624a'
 
   return (
     <div className={styles.pagina}>
+
       <header className={styles.header}>
         <button className={styles.btnVolver} onClick={() => navigate('/dashboard')}>
           ← Volver
@@ -46,10 +48,16 @@ function ViajePage() {
       </header>
 
       <nav className={styles.menu}>
-        {secciones.map(s => (
+        {SECCIONES.map(s => (
           <button
             key={s.id}
             className={`${styles.menuBtn} ${seccionActiva === s.id ? styles.activo : ''}`}
+            style={seccionActiva === s.id ? {
+              color: 'white',
+              background: s.color,
+              borderBottomColor: 'transparent',
+              borderRadius: '8px 8px 0 0',
+            } : {}}
             onClick={() => setSeccionActiva(s.id)}
           >
             {s.label}
@@ -71,6 +79,20 @@ function ViajePage() {
           <MapaPOI viajeId={id} esAdmin={esTitular} />
         )}
       </main>
+
+      <footer className={styles.footer}>
+        <div className={styles.footerContenido}>
+          <div className={styles.footerLogo}>✈ TravelApp</div>
+          <div className={styles.footerLinks}>
+            <span className={styles.footerLink}>Sobre nosotros</span>
+            <span className={styles.footerLink}>Contacto</span>
+            <span className={styles.footerLink}>Condiciones de uso</span>
+            <span className={styles.footerLink}>Privacidad</span>
+          </div>
+          <p className={styles.footerCopy}>© 2026 Priscila & Melina. Todos los derechos reservados.</p>
+        </div>
+      </footer>
+
     </div>
   )
 }

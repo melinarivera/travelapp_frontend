@@ -1,151 +1,118 @@
-
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
+/* LARANJA #F0A020 */
+.container { max-width: 760px; margin: 0 auto; padding: 0; animation: fadeIn 0.3s ease-in-out; }
+.loading { color: #bbb; text-align: center; padding: 40px; }
 
 .inputContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    background-color: #ffffff;
-    padding: 24px;
-    border-radius: 16px;
-    margin-bottom: 32px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    border: 1px solid #f0f0f0;
+  display: flex; flex-direction: column; gap: 12px;
+  background: white; padding: 24px; border-radius: 20px;
+  margin-bottom: 36px; border: 1.5px solid #efefef;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
-
 .inputContainer input {
-    padding: 12px 16px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: border-color 0.2s;
+  padding: 12px 16px; border: 1.5px solid #efefef; border-radius: 12px;
+  font-size: 0.9rem; outline: none; font-family: inherit;
+  color: #1a1a2e; background: #f7f7fb; transition: border-color 0.2s;
+  color-scheme: light;
 }
+.inputContainer input:focus { border-color: #F0A020; background: white; }
 
-.inputContainer input:focus {
-    outline: none;
-    border-color: #000;
-}
-
-.rowInputs {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.rowInputs input {
-    flex: 1;
-    min-width: 140px;
-}
+.rowInputs { display: flex; gap: 12px; flex-wrap: wrap; }
+.rowInputs input { flex: 1; min-width: 140px; }
 
 .addBtn {
-    background-color: #1a1a1a;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s;
+  background: linear-gradient(135deg, #F0A020 0%, #d4860a 100%);
+  color: white; border: none; padding: 12px 24px; border-radius: 12px;
+  font-weight: 700; cursor: pointer; font-family: inherit; font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(240,160,32,0.35);
+  transition: opacity 0.2s, transform 0.1s; white-space: nowrap;
+}
+.addBtn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.timeline { display: flex; flex-direction: column; gap: 36px; }
+
+.diaBloque { display: flex; flex-direction: column; }
+
+.diaHeader { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+
+.diaBadge {
+  background: linear-gradient(135deg, #F0A020 0%, #d4860a 100%);
+  color: white; font-size: 0.78rem; font-weight: 800;
+  padding: 6px 14px; border-radius: 20px; text-transform: uppercase;
+  letter-spacing: 0.5px; box-shadow: 0 4px 10px rgba(240,160,32,0.35);
+  white-space: nowrap;
 }
 
-.addBtn:hover {
-    background-color: #333;
+.diaFecha {
+  font-size: 1rem; font-weight: 700; color: #1a1a2e;
+  text-transform: capitalize; letter-spacing: -0.2px;
 }
 
+.eventos { display: flex; flex-direction: column; }
 
-.list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.eventoRow { display: flex; gap: 20px; align-items: stretch; min-height: 80px; }
+
+.horaCol {
+  display: flex; flex-direction: column; align-items: center;
+  min-width: 52px; gap: 0;
+}
+
+.hora {
+  font-size: 0.85rem; font-weight: 700; color: #F0A020;
+  white-space: nowrap; margin-bottom: 6px;
+}
+
+.lineaVertical {
+  display: flex; flex-direction: column; align-items: center;
+  flex: 1; width: 12px;
+}
+
+.punto {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #F0A020; box-shadow: 0 0 0 3px rgba(240,160,32,0.2);
+  flex-shrink: 0;
+}
+
+.linea {
+  width: 2px; flex: 1; min-height: 80px;
+  background: linear-gradient(to bottom, #F0A020, #efefef);
 }
 
 .card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    padding: 18px 24px;
-    border-radius: 12px;
-    border: 1px solid #efefef;
-    transition: transform 0.2s, box-shadow 0.2s;
+  flex: 1; display: flex; justify-content: space-between; align-items: center;
+  background: white; border: 1.5px solid #efefef; border-radius: 16px;
+  padding: 16px 20px; margin-bottom: 16px;
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.15s;
 }
-
 .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+  border-color: #F0A020; transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(240,160,32,0.1);
 }
 
-.info {
-    flex: 1;
-}
-
-.nombreLocal {
-    margin: 0;
-    font-size: 16px;
-    color: #1a1a1a;
-    font-weight: 600;
-}
-
-.detalles {
-    margin: 4px 0 0;
-    font-size: 13px;
-    color: #717171;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
+.cardInfo { display: flex; flex-direction: column; gap: 4px; }
+.nombreLocal { margin: 0; font-size: 1rem; font-weight: 700; color: #1a1a2e; }
+.direccion { margin: 0; font-size: 0.82rem; color: #aaa; }
 
 .deleteBtn {
-    background: none;
-    border: 1px solid #ffeded;
-    color: #ff4d4d;
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
+  background: #fff8ee; border: none; color: #F0A020;
+  padding: 7px 16px; border-radius: 20px; font-size: 0.82rem;
+  font-weight: 600; cursor: pointer; transition: background 0.2s;
+  font-family: inherit; white-space: nowrap; flex-shrink: 0;
 }
-
-.deleteBtn:hover {
-    background-color: #ff4d4d;
-    color: white;
-    border-color: #ff4d4d;
-}
-
+.deleteBtn:hover { background: #ffe8bb; }
 
 .emptyMsg {
-    text-align: center;
-    color: #999;
-    padding: 40px;
-    font-style: italic;
+  text-align: center; color: #bbb; padding: 48px; font-style: italic;
+  background: white; border-radius: 20px; border: 1.5px solid #efefef;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-
 @media (max-width: 600px) {
-    .rowInputs {
-        flex-direction: column;
-    }
-    
-    .card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-    
-    .deleteBtn {
-        align-self: flex-end;
-    }
+  .rowInputs { flex-direction: column; }
+  .horaCol { min-width: 44px; }
+  .card { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .deleteBtn { align-self: flex-end; }
 }

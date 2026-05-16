@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useAuth } from '../context/AuthContext'
 import api from '../api'
 import styles from './Integrantes.module.css'
 
@@ -18,9 +17,7 @@ function Integrantes({ viajeId, esTitular }) {
     }
   }
 
-  useEffect(() => {
-    cargarIntegrantes()
-  }, [viajeId])
+  useEffect(() => { cargarIntegrantes() }, [viajeId])
 
   const handleAgregar = async (e) => {
     e.preventDefault()
@@ -46,6 +43,17 @@ function Integrantes({ viajeId, esTitular }) {
     }
   }
 
+  // Iniciales para el avatar
+  const getIniciales = (nombre, email) => {
+    if (nombre) return nombre.charAt(0).toUpperCase()
+    if (email) return email.charAt(0).toUpperCase()
+    return '?'
+  }
+
+  // Color del avatar basado en el nombre
+  const colores = ['#e8624a', '#7c5cbf', '#2EBD8A', '#F0A020', '#A8CECA']
+  const getColor = (str) => colores[(str?.charCodeAt(0) || 0) % colores.length]
+
   return (
     <div className={styles.contenedor}>
       <h3 className={styles.titulo}>Integrantes del viaje</h3>
@@ -68,13 +76,29 @@ function Integrantes({ viajeId, esTitular }) {
 
       {error && <p className={styles.error}>{error}</p>}
 
-      <ul className={styles.lista}>
+      <div className={styles.grid}>
         {integrantes.map(i => (
-          <li key={i.id} className={styles.item}>
-            <div className={styles.itemInfo}>
-<span className={styles.itemEmail}>{i.nombre || i.email}</span>
-              <span className={`${styles.rol} ${styles[i.rol]}`}>{i.rol}</span>
+          <div key={i.id} className={styles.card}>
+            {/* Avatar */}
+            <div
+              className={styles.avatar}
+              style={{ background: getColor(i.nombre || i.email) }}
+            >
+              {getIniciales(i.nombre, i.email)}
             </div>
+
+            {/* Nombre */}
+            <p className={styles.nombre}>{i.nombre || i.email}</p>
+
+            {/* Email (si hay nombre) */}
+            {i.nombre && (
+              <p className={styles.emailText}>{i.email}</p>
+            )}
+
+            {/* Rol */}
+            <span className={`${styles.rol} ${styles[i.rol]}`}>{i.rol}</span>
+
+            {/* Botón eliminar */}
             {esTitular && i.rol !== 'titular' && (
               <button
                 className={styles.btnEliminar}
@@ -83,9 +107,9 @@ function Integrantes({ viajeId, esTitular }) {
                 Eliminar
               </button>
             )}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
 
       {integrantes.length === 0 && (
         <p className={styles.sinIntegrantes}>No hay integrantes todavía</p>

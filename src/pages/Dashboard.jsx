@@ -5,14 +5,14 @@ import CrearViajeModal from '../components/CrearViajeModal'
 import ViajeCard from '../components/ViajeCard'
 import api from '../api'
 import styles from './Dashboard.module.css'
-
+ 
 function Dashboard() {
   const { usuario, perfil, cerrarSesion } = useAuth()
   const navigate = useNavigate()
   const [mostrarModal, setMostrarModal] = useState(false)
   const [viajes, setViajes] = useState([])
   const [cargando, setCargando] = useState(true)
-
+ 
   const cargarViajes = async () => {
     try {
       const res = await api.get('/api/viajes')
@@ -23,36 +23,37 @@ function Dashboard() {
       setCargando(false)
     }
   }
-
+ 
   useEffect(() => {
     cargarViajes()
   }, [])
-
+ 
   const handleCerrarSesion = () => {
     cerrarSesion()
     navigate('/')
   }
-
+ 
   const handleViajeCreado = () => {
     setMostrarModal(false)
     cargarViajes()
   }
-
+ 
   return (
     <div className={styles.pagina}>
+ 
       <header className={styles.header}>
         <h1 className={styles.logo}>TravelApp</h1>
         <div className={styles.headerDerecha}>
           <span className={styles.email}>{perfil?.nombre || usuario?.email}</span>
           <button className={styles.btnPerfil} onClick={() => navigate('/perfil')}>
-  Mi perfil
-</button>
+            Mi perfil
+          </button>
           <button className={styles.btnCerrarSesion} onClick={handleCerrarSesion}>
             Cerrar sesión
           </button>
         </div>
       </header>
-
+ 
       <main className={styles.contenido}>
         <div className={styles.tituloSeccion}>
           <h2>Mis viajes</h2>
@@ -60,28 +61,42 @@ function Dashboard() {
             + Nuevo viaje
           </button>
         </div>
-
+ 
         <div className={styles.listaViajes}>
           {cargando ? (
             <p className={styles.sinViajes}>Cargando viajes...</p>
           ) : viajes.length === 0 ? (
             <p className={styles.sinViajes}>Todavía no tienes viajes. ¡Crea el primero!</p>
           ) : (
-            viajes.map(viaje => (
-              <ViajeCard key={viaje.id} viaje={viaje} usuarioId={usuario?.id} />
-            ))
+           viajes.map((viaje, idx) => (
+  <ViajeCard key={viaje.id} viaje={viaje} usuarioId={usuario?.id} index={idx} />
+))
           )}
         </div>
       </main>
-
+ 
       {mostrarModal && (
         <CrearViajeModal
           onCerrar={() => setMostrarModal(false)}
           onViajeCreado={handleViajeCreado}
         />
       )}
+ 
+      <footer className={styles.footer}>
+        <div className={styles.footerContenido}>
+          <div className={styles.footerLogo}>✈ TravelApp</div>
+          <div className={styles.footerLinks}>
+            <span className={styles.footerLink}>Sobre nosotros</span>
+            <span className={styles.footerLink}>Contacto</span>
+            <span className={styles.footerLink}>Condiciones de uso</span>
+            <span className={styles.footerLink}>Privacidad</span>
+          </div>
+          <p className={styles.footerCopy}>© 2026 Priscila & Melina. Todos los derechos reservados.</p>
+        </div>
+      </footer>
+ 
     </div>
   )
 }
-
+ 
 export default Dashboard
