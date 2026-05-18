@@ -3,11 +3,19 @@ import { useNavigate } from 'react-router-dom'
 import api from '../api'
 import styles from './ViajeCard.module.css'
 
-function ViajeCard({ viaje, onActualizado, usuarioId }) {
+const PALETA = [
+  { borda: '#e8624a', bg: '#fff0ee', texto: '#e8624a' },   // coral
+  { borda: '#7c5cbf', bg: '#f0eeff', texto: '#7c5cbf' },   // roxo
+  { borda: '#2EBD8A', bg: '#edfaf4', texto: '#2EBD8A' },   // verde
+  { borda: '#F0A020', bg: '#fff8ee', texto: '#F0A020' },   // laranja
+]
+
+function ViajeCard({ viaje, onActualizado, usuarioId, index = 0 }) {
   const [estado, setEstado] = useState(viaje.estado)
   const [cargando, setCargando] = useState(false)
   const navigate = useNavigate()
   const esTitular = viaje.titular_id === usuarioId
+  const cor = PALETA[index % PALETA.length]
 
   const estados = {
     planificacion: 'Planificación',
@@ -17,9 +25,7 @@ function ViajeCard({ viaje, onActualizado, usuarioId }) {
 
   const formatearFecha = (fecha) => {
     return new Date(fecha).toLocaleDateString('es-ES', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
+      day: 'numeric', month: 'short', year: 'numeric'
     })
   }
 
@@ -37,7 +43,10 @@ function ViajeCard({ viaje, onActualizado, usuarioId }) {
   }
 
   return (
-    <div className={styles.card}>
+    <div
+      className={styles.card}
+      style={{ borderColor: cor.borda }}
+    >
       <div className={styles.imagen}>
         {viaje.imagen_url
           ? <img src={viaje.imagen_url} alt={viaje.titulo} />
@@ -51,15 +60,22 @@ function ViajeCard({ viaje, onActualizado, usuarioId }) {
       <div className={styles.info}>
         <h3 className={styles.titulo}>{viaje.titulo}</h3>
         <p className={styles.destino}>{viaje.destino}</p>
-        <span className={`${styles.badge} ${esTitular ? styles.titular : styles.integrante}`}>
+
+        <span
+          className={styles.badge}
+          style={{ background: cor.bg, color: cor.texto }}
+        >
           {esTitular ? 'Titular' : 'Integrante'}
         </span>
+
         <p className={styles.fechas}>
           {formatearFecha(viaje.fecha_inicio)} → {formatearFecha(viaje.fecha_fin)}
         </p>
+
         {esTitular && (
           <select
             className={styles.selectEstado}
+            style={{ borderColor: cor.borda }}
             value={estado}
             onChange={e => handleEstado(e.target.value)}
             disabled={cargando}
@@ -69,8 +85,13 @@ function ViajeCard({ viaje, onActualizado, usuarioId }) {
             <option value="finalizado">Finalizado</option>
           </select>
         )}
+
         <button
           className={styles.btnEntrar}
+          style={{
+            background: `linear-gradient(135deg, ${cor.borda} 0%, ${cor.borda}cc 100%)`,
+            boxShadow: `0 4px 12px ${cor.borda}44`
+          }}
           onClick={() => navigate(`/viaje/${viaje.id}`)}
         >
           Entrar al viaje

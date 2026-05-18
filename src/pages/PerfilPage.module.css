@@ -1,30 +1,116 @@
 .pagina {
   min-height: 100vh;
-  background: #f8f7f4;
+  background: #f7f7fb;
+  display: flex;
+  flex-direction: column;
 }
 
+/* HEADER */
 .header {
+  background: white;
+  padding: 16px 64px;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem 2rem;
-  background: white;
-  border-bottom: 1px solid #e0e0e0;
+  justify-content: space-between;
+  border-bottom: 1.5px solid #efefef;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #e8624a;
+  letter-spacing: -0.5px;
+}
+
+.headerDerecha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .btnVolver {
+  font-size: 0.85rem;
+  color: #aaa;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 0.9rem;
-  color: #555;
+  transition: color 0.2s;
+  font-family: inherit;
+  padding: 0;
 }
+.btnVolver:hover { color: #1a3a5c; }
 
-.titulo {
-  font-size: 1.2rem;
-  font-weight: 700;
+.btnCerrarSesion {
+  font-size: 0.85rem;
+  color: #e8624a;
+  background: #fff0ee;
+  border: none;
+  border-radius: 20px;
+  padding: 7px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+  font-family: inherit;
 }
+.btnCerrarSesion:hover { background: #ffddd8; }
 
+/* CONTENIDO */
 .contenido {
-  padding: 2rem 1rem;
+  flex: 1;
+  padding: 48px 24px;
+}
+
+/* FOOTER */
+.footer {
+  background: #1a1a2e;
+  color: white;
+  padding: 36px 64px;
+  margin-top: auto;
+}
+
+.footerContenido {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.footerLogo {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #e8624a;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footerLink {
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.footerLink:hover { color: #e8624a; }
+
+.footerCopy {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.25);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .header { padding: 14px 20px; }
+  .footer { padding: 28px 20px; }
 }
