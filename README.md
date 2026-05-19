@@ -46,9 +46,9 @@ TravelApp es una aplicación fullstack desarrollada como proyecto final de bootc
 
 ### Gestión del viaje
 - **Integrantes** — añadir por email, ver lista con nombres, eliminar (solo titular)
-- **Tickets & Docs** — subir PDF e imágenes con título, lugar y fecha; eliminar (solo titular)
-- **Itinerario** — gestión de actividades organizadas por día
-- **Mapa & POI** — puntos de interés con sistema de votación y visualización en mapa
+- **Tickets & Docs** — subir PDF e imágenes con título, lugar y fecha; eliminar (titular y integrantes)
+- **Itinerario** — gestión de actividades por día, data y hora en orden cronológica, añadir y quitar informaciones (titular)
+- **Mapa & POI** — puntos de interés con votación y visualización en mapa, añadir punto de interés, añadir POI al itinerário (integrantes y titular)
 
 ### Perfil de usuario
 - Foto de perfil, nombre y teléfono
@@ -221,12 +221,12 @@ travelapp_frontend/
 | Tabla | Descripción |
 |-------|-------------|
 | `viajes` | Viajes creados por los usuarios |
-| `integrantes` | Relación usuario-viaje con rol (titular/integrante) |
+| `integrantes` | Relación usuario-viaje con rol |
 | `documentos` | Tickets y documentos subidos por viaje |
 | `perfiles` | Nombre, teléfono y foto de cada usuario |
-| `itinerarios` | Actividades organizadas por día para cada viaje |
-| `lugares_poi` | Puntos de interés sugeridos por los integrantes |
-| `votos_poi` | Votos positivos/negativos sobre los puntos de interés |
+| `itinerarios` | Nombre, dirección, fecha y hora de cada local añadido en el itinerario |
+| `lugares_poi` | Nombre y descripición cada local añadido en el POI |
+| `votos_poi` | registro de voto unico por id |
 
 ### Storage buckets
 
