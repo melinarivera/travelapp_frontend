@@ -4,46 +4,54 @@
   padding: 1rem;
 }
 
+.titulo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Tabs */
 .tabs {
   display: flex;
-  gap: 0.5rem;
+  gap: 0;
   margin-bottom: 1.5rem;
   border-bottom: 2px solid #e0e0e0;
-  padding-bottom: 0.5rem;
 }
 
 .tab {
   background: none;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.25rem;
   font-size: 0.95rem;
   cursor: pointer;
   color: #888;
-  border-radius: 8px 8px 0 0;
 }
 
 .tabActivo {
   color: #111;
   font-weight: 600;
   border-bottom: 2px solid #111;
+  margin-bottom: -2px;
 }
 
+/* Form */
 .formulario {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.75rem;
   background: #f9f9f9;
   border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 1.25rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .input {
   padding: 0.6rem 0.9rem;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   outline: none;
 }
 
@@ -53,9 +61,9 @@
 
 .textarea {
   padding: 0.6rem 0.9rem;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   outline: none;
   font-family: inherit;
   resize: vertical;
@@ -67,39 +75,112 @@
 
 .select {
   padding: 0.6rem 0.9rem;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   outline: none;
   background: white;
 }
 
-.btnCrear {
+.btnSubir {
   background: #111;
   color: white;
   border: none;
   border-radius: 8px;
   padding: 0.65rem 1rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   cursor: pointer;
   align-self: flex-end;
 }
 
-.btnCrear:hover {
+.btnSubir:hover {
   background: #333;
 }
 
-.vacio {
-  text-align: center;
-  color: #999;
-  margin-top: 2rem;
+/* Shared delete button */
+.btnEliminar {
+  background: none;
+  border: 1px solid #e53e3e;
+  color: #e53e3e;
+  border-radius: 8px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
-/* CHECKLISTS */
+.btnEliminar:hover {
+  background: #fff5f5;
+}
+
+.sinDocs {
+  text-align: center;
+  color: #999;
+  margin-top: 1rem;
+}
+
+/* Notes list */
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-left: 4px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  gap: 1rem;
+}
+
+.alta {
+  border-left-color: #e53e3e;
+}
+
+.media {
+  border-left-color: #F0A020;
+}
+
+.baja {
+  border-left-color: #2EBD8A;
+}
+
+.infoNota {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.notaTitulo {
+  font-weight: 500;
+  color: #111;
+  font-size: 0.95rem;
+}
+
+.notaContenido {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}
+
+.prioridadLabel {
+  font-size: 0.78rem;
+  color: #888;
+}
+
+/* Checklist cards */
 .checklistCard {
   background: white;
   border: 1px solid #e0e0e0;
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 1rem;
   margin-bottom: 1rem;
 }
@@ -114,6 +195,7 @@
 .checklistTitulo {
   font-weight: 600;
   font-size: 1rem;
+  color: #111;
 }
 
 .checklistMeta {
@@ -139,7 +221,7 @@
   gap: 0.4rem;
 }
 
-.item {
+.itemRow {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -194,61 +276,6 @@
   cursor: pointer;
 }
 
-.btnEliminar {
-  background: none;
-  border: 1px solid #e53e3e;
-  color: #e53e3e;
-  border-radius: 8px;
-  padding: 0.3rem 0.65rem;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-.btnEliminar:hover {
-  background: #fff5f5;
-}
-
-/* NOTAS */
-.notaCard {
-  background: white;
-  border-left: 4px solid #ddd;
-  border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 0.75rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-}
-
-.alta {
-  border-left-color: #e53e3e;
-}
-
-.media {
-  border-left-color: #F0A020;
-}
-
-.baja {
-  border-left-color: #2EBD8A;
-}
-
-.notaHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.4rem;
-}
-
-.notaTitulo {
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-.notaContenido {
-  font-size: 0.875rem;
-  color: #555;
-  margin: 0.4rem 0;
-}
-
-.prioridadLabel {
-  font-size: 0.78rem;
-  color: #888;
+.btnAddItem:hover {
+  background: #333;
 }

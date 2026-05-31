@@ -10,14 +10,11 @@ function ChecklistNotas({ viajeId }) {
   const [notas, setNotas] = useState([])
   const [cargando, setCargando] = useState(true)
 
-  // Estados para nuevo checklist
   const [nuevoChecklist, setNuevoChecklist] = useState('')
   const [visibilidad, setVisibilidad] = useState('personal')
 
-  // Estados para nueva nota
   const [nuevaNota, setNuevaNota] = useState({ titulo: '', contenido: '', prioridad: 'media' })
 
-  // Estados para nuevo item
   const [nuevoItem, setNuevoItem] = useState({})
 
   const cargarChecklists = async () => {
@@ -49,10 +46,7 @@ function ChecklistNotas({ viajeId }) {
     e.preventDefault()
     if (!nuevoChecklist.trim()) return
     try {
-      await api.post(`/api/viajes/${viajeId}/checklists`, {
-        titulo: nuevoChecklist,
-        visibilidad
-      })
+      await api.post(`/api/viajes/${viajeId}/checklists`, { titulo: nuevoChecklist, visibilidad })
       setNuevoChecklist('')
       setVisibilidad('personal')
       cargarChecklists()
@@ -125,18 +119,20 @@ function ChecklistNotas({ viajeId }) {
 
   return (
     <div className={styles.contenedor}>
+      <h2 className={styles.titulo}>Checklist & Notas</h2>
+
       <div className={styles.tabs}>
         <button
           className={`${styles.tab} ${tab === 'checklists' ? styles.tabActivo : ''}`}
           onClick={() => setTab('checklists')}
         >
-          ✅ Checklists
+          Checklists
         </button>
         <button
           className={`${styles.tab} ${tab === 'notas' ? styles.tabActivo : ''}`}
           onClick={() => setTab('notas')}
         >
-          📝 Notas
+          Notas
         </button>
       </div>
 
@@ -158,11 +154,11 @@ function ChecklistNotas({ viajeId }) {
               <option value="personal">Solo yo</option>
               <option value="grupo">Todo el grupo</option>
             </select>
-            <button className={styles.btnCrear} type="submit">+ Crear</button>
+            <button className={styles.btnSubir} type="submit">+ Crear checklist</button>
           </form>
 
           {checklists.length === 0 ? (
-            <p className={styles.vacio}>No hay checklists todavía.</p>
+            <p className={styles.sinDocs}>No hay checklists todavía.</p>
           ) : (
             checklists.map(checklist => (
               <div key={checklist.id} className={styles.checklistCard}>
@@ -170,7 +166,7 @@ function ChecklistNotas({ viajeId }) {
                   <span className={styles.checklistTitulo}>{checklist.titulo}</span>
                   <div className={styles.checklistMeta}>
                     <span className={styles.badge}>
-                      {checklist.visibilidad === 'grupo' ? '👥 Grupo' : '🔒 Personal'}
+                      {checklist.visibilidad === 'grupo' ? 'Grupo' : 'Personal'}
                     </span>
                     {checklist.creador_id === usuario?.id && (
                       <button
@@ -185,7 +181,7 @@ function ChecklistNotas({ viajeId }) {
 
                 <ul className={styles.itemLista}>
                   {checklist.checklist_items?.map(item => (
-                    <li key={item.id} className={styles.item}>
+                    <li key={item.id} className={styles.itemRow}>
                       <input
                         type="checkbox"
                         checked={item.completado}
@@ -198,7 +194,7 @@ function ChecklistNotas({ viajeId }) {
                         className={styles.btnEliminarItem}
                         onClick={() => handleEliminarItem(item.id)}
                       >
-                        ×
+                        x
                       </button>
                     </li>
                   ))}
@@ -248,33 +244,35 @@ function ChecklistNotas({ viajeId }) {
               value={nuevaNota.prioridad}
               onChange={e => setNuevaNota(prev => ({ ...prev, prioridad: e.target.value }))}
             >
-              <option value="alta">🔴 Alta prioridad</option>
-              <option value="media">🟡 Media prioridad</option>
-              <option value="baja">🟢 Baja prioridad</option>
+              <option value="alta">Alta prioridad</option>
+              <option value="media">Media prioridad</option>
+              <option value="baja">Baja prioridad</option>
             </select>
-            <button className={styles.btnCrear} type="submit">+ Añadir nota</button>
+            <button className={styles.btnSubir} type="submit">+ Añadir nota</button>
           </form>
 
           {notas.length === 0 ? (
-            <p className={styles.vacio}>No hay notas todavía.</p>
+            <p className={styles.sinDocs}>No hay notas todavía.</p>
           ) : (
-            notas.map(nota => (
-              <div key={nota.id} className={`${styles.notaCard} ${prioridadColor[nota.prioridad]}`}>
-                <div className={styles.notaHeader}>
-                  <span className={styles.notaTitulo}>{nota.titulo}</span>
+            <ul className={styles.lista}>
+              {notas.map(nota => (
+                <li key={nota.id} className={`${styles.item} ${prioridadColor[nota.prioridad]}`}>
+                  <div className={styles.infoNota}>
+                    <span className={styles.notaTitulo}>{nota.titulo}</span>
+                    {nota.contenido && <p className={styles.notaContenido}>{nota.contenido}</p>}
+                    <span className={styles.prioridadLabel}>
+                      {nota.prioridad === 'alta' ? 'Alta' : nota.prioridad === 'media' ? 'Media' : 'Baja'}
+                    </span>
+                  </div>
                   <button
                     className={styles.btnEliminar}
                     onClick={() => handleEliminarNota(nota.id)}
                   >
                     Eliminar
                   </button>
-                </div>
-                {nota.contenido && <p className={styles.notaContenido}>{nota.contenido}</p>}
-                <span className={styles.prioridadLabel}>
-                  {nota.prioridad === 'alta' ? '🔴 Alta' : nota.prioridad === 'media' ? '🟡 Media' : '🟢 Baja'}
-                </span>
-              </div>
-            ))
+                </li>
+              ))}
+            </ul>
           )}
         </div>
       )}
