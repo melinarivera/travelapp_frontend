@@ -1,0 +1,254 @@
+.contenedor {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: #888;
+  border-radius: 8px 8px 0 0;
+}
+
+.tabActivo {
+  color: #111;
+  font-weight: 600;
+  border-bottom: 2px solid #111;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.input {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #333;
+}
+
+.textarea {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.textarea:focus {
+  border-color: #333;
+}
+
+.select {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  background: white;
+}
+
+.btnCrear {
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.btnCrear:hover {
+  background: #333;
+}
+
+.vacio {
+  text-align: center;
+  color: #999;
+  margin-top: 2rem;
+}
+
+/* CHECKLISTS */
+.checklistCard {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.checklistHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.checklistTitulo {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.checklistMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  background: #f0f0f0;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  color: #555;
+}
+
+.itemLista {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.itemCompletado {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.btnEliminarItem {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: auto;
+  padding: 0;
+}
+
+.btnEliminarItem:hover {
+  color: #e53e3e;
+}
+
+.addItem {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.inputItem {
+  flex: 1;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.inputItem:focus {
+  border-color: #999;
+}
+
+.btnAddItem {
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 0.85rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btnEliminar {
+  background: none;
+  border: 1px solid #e53e3e;
+  color: #e53e3e;
+  border-radius: 8px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.btnEliminar:hover {
+  background: #fff5f5;
+}
+
+/* NOTAS */
+.notaCard {
+  background: white;
+  border-left: 4px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.alta {
+  border-left-color: #e53e3e;
+}
+
+.media {
+  border-left-color: #F0A020;
+}
+
+.baja {
+  border-left-color: #2EBD8A;
+}
+
+.notaHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.notaTitulo {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.notaContenido {
+  font-size: 0.875rem;
+  color: #555;
+  margin: 0.4rem 0;
+}
+
+.prioridadLabel {
+  font-size: 0.78rem;
+  color: #888;
+}
