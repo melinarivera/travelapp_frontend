@@ -13,7 +13,7 @@ function ChecklistNotas({ viajeId }) {
   const [nuevoChecklist, setNuevoChecklist] = useState('')
   const [visibilidad, setVisibilidad] = useState('personal')
 
-  const [nuevaNota, setNuevaNota] = useState({ titulo: '', contenido: '', prioridad: 'media' })
+  const [nuevaNota, setNuevaNota] = useState({ titulo: '', contenido: '', prioridad: 'media', fecha: '' })
 
   const [nuevoItem, setNuevoItem] = useState({})
 
@@ -239,6 +239,12 @@ function ChecklistNotas({ viajeId }) {
               value={nuevaNota.contenido}
               onChange={e => setNuevaNota(prev => ({ ...prev, contenido: e.target.value }))}
             />
+            <input
+              className={styles.input}
+              type="date"
+              value={nuevaNota.fecha || ''}
+              onChange={e => setNuevaNota(prev => ({ ...prev, fecha: e.target.value }))}
+            />
             <select
               className={styles.select}
               value={nuevaNota.prioridad}
@@ -260,6 +266,7 @@ function ChecklistNotas({ viajeId }) {
                   <div className={styles.infoNota}>
                     <span className={styles.notaTitulo}>{nota.titulo}</span>
                     {nota.contenido && <p className={styles.notaContenido}>{nota.contenido}</p>}
+                    {nota.fecha && <span className={styles.prioridadLabel}>{new Date(nota.fecha + 'T00:00:00').toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })}</span>}
                     <span className={styles.prioridadLabel}>
                       {nota.prioridad === 'alta' ? 'Alta' : nota.prioridad === 'media' ? 'Media' : 'Baja'}
                     </span>
