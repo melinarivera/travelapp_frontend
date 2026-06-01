@@ -1,0 +1,153 @@
+/* AZUL #3B82F6 */
+ 
+.contenedor {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: #eff6ff;
+  border-radius: 12px;
+}
+ 
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: white;
+  border: 1.5px solid #3B82F6;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+}
+ 
+.input {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  font-family: inherit;
+  color: #1a1a2e;
+  background: #f7f7fb;
+  transition: border-color 0.2s;
+}
+ 
+.input:focus {
+  border-color: #3B82F6;
+  background: white;
+}
+ 
+.error {
+  font-size: 0.85rem;
+  color: #e8624a;
+  background: #fff0ee;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin: 0;
+}
+ 
+.btnAgregar {
+  background: #3B82F6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  align-self: flex-end;
+  font-family: inherit;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+ 
+.btnAgregar:hover {
+  background: #2563eb;
+}
+ 
+.btnAgregar:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+ 
+.sinLinks {
+  text-align: center;
+  color: #999;
+  margin-top: 1rem;
+}
+ 
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+ 
+.item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-left: 4px solid #3B82F6;
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  gap: 1rem;
+  transition: border-color 0.2s, transform 0.15s;
+}
+ 
+.item:hover {
+  border-color: #3B82F6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(59,130,246,0.1);
+}
+ 
+.infoLink {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+ 
+.linkUrl {
+  font-weight: 700;
+  color: #3B82F6;
+  font-size: 0.95rem;
+  text-decoration: none;
+  word-break: break-all;
+  transition: color 0.2s;
+}
+ 
+.linkUrl:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+ 
+.descripcion {
+  font-size: 0.88rem;
+  color: #555;
+  margin: 0;
+}
+ 
+.fecha {
+  font-size: 0.78rem;
+  color: #bbb;
+}
+ 
+.btnEliminar {
+  background: none;
+  border: 1px solid #e53e3e;
+  color: #e53e3e;
+  border-radius: 8px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+ 
+.btnEliminar:hover {
+  background: #fff5f5;
+}
+ 

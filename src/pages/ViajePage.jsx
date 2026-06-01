@@ -8,6 +8,8 @@ import TicketsYDocs from '../components/TicketsYDocs'
 import ChecklistNotas from '../components/ChecklistNotas'
 import api from '../api'
 import styles from './ViajePage.module.css'
+import Links from '../components/Links'
+import Gastos from '../components/Gastos'
 
 const SECCIONES = [
   { id: 'integrantes', label: 'Integrantes',       color: '#e8624a' },
@@ -15,6 +17,8 @@ const SECCIONES = [
   { id: 'itinerario',  label: 'Itinerario',         color: '#F0A020' },
   { id: 'mapa',        label: 'Mapa & POI',         color: '#7c5cbf' },
   { id: 'checklist',   label: 'Checklist & Notas',  color: '#2EBD8A' },
+  { id: 'links', label: 'Links', color: '#3B82F6' },
+  { id: 'gastos', label: 'Gastos', color: '#EF4444' },
 ]
 
 function ViajePage() {
@@ -81,6 +85,9 @@ function ViajePage() {
           <MapaPOI viajeId={id} esAdmin={esTitular} />
         )}
         {seccionActiva === 'checklist' && <ChecklistNotas viajeId={id} />}
+        {seccionActiva === 'links' && <Links viajeId={id} />}
+        {seccionActiva === 'gastos' && <Gastos viajeId={id} />}
+
       </main>
 
       <footer className={styles.footer}>
