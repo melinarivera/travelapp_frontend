@@ -6,15 +6,17 @@ import Itinerario from '../components/Itinerario'
 import MapaPOI from '../components/MapaPOI'
 import TicketsYDocs from '../components/TicketsYDocs'
 import ChecklistNotas from '../components/ChecklistNotas'
+import Mensajes from '../components/Mensajes'
 import api from '../api'
 import styles from './ViajePage.module.css'
 
 const SECCIONES = [
-  { id: 'integrantes', label: 'Integrantes',       color: '#e8624a' },
-  { id: 'documentos',  label: 'Tickets & Docs',    color: '#2EBD8A' },
-  { id: 'itinerario',  label: 'Itinerario',         color: '#F0A020' },
-  { id: 'mapa',        label: 'Mapa & POI',         color: '#7c5cbf' },
-  { id: 'checklist',   label: 'Checklist & Notas',  color: '#2EBD8A' },
+  { id: 'integrantes', label: 'Integrantes',      color: '#e8624a' },
+  { id: 'documentos',  label: 'Tickets & Docs',   color: '#2EBD8A' },
+  { id: 'itinerario',  label: 'Itinerario',        color: '#F0A020' },
+  { id: 'mapa',        label: 'Mapa & POI',        color: '#7c5cbf' },
+  { id: 'checklist',   label: 'Checklist & Notas', color: '#2EBD8A' },
+  { id: 'mensajes',    label: 'Mensajes',          color: '#1a3a5c' },
 ]
 
 function ViajePage() {
@@ -37,11 +39,9 @@ function ViajePage() {
   }, [id])
 
   const esTitular = viaje?.titular_id === usuario?.id
-  const colorActivo = SECCIONES.find(s => s.id === seccionActiva)?.color || '#e8624a'
 
   return (
     <div className={styles.pagina}>
-
       <header className={styles.header}>
         <button className={styles.btnVolver} onClick={() => navigate('/dashboard')}>
           ← Volver
@@ -80,7 +80,12 @@ function ViajePage() {
         {seccionActiva === 'mapa' && (
           <MapaPOI viajeId={id} esAdmin={esTitular} />
         )}
-        {seccionActiva === 'checklist' && <ChecklistNotas viajeId={id} />}
+        {seccionActiva === 'checklist' && (
+          <ChecklistNotas viajeId={id} />
+        )}
+        {seccionActiva === 'mensajes' && (
+          <Mensajes viajeId={id} />
+        )}
       </main>
 
       <footer className={styles.footer}>
@@ -95,7 +100,6 @@ function ViajePage() {
           <p className={styles.footerCopy}>© 2026 Priscila & Melina. Todos los derechos reservados.</p>
         </div>
       </footer>
-
     </div>
   )
 }
