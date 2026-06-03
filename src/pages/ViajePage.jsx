@@ -7,6 +7,8 @@ import MapaPOI from '../components/MapaPOI'
 import TicketsYDocs from '../components/TicketsYDocs'
 import ChecklistNotas from '../components/ChecklistNotas'
 import Mensajes from '../components/Mensajes'
+import Links from '../components/Links'
+import Gastos from '../components/Gastos'
 import api from '../api'
 import styles from './ViajePage.module.css'
 
@@ -17,6 +19,8 @@ const SECCIONES = [
   { id: 'mapa',        label: 'Mapa & POI',        color: '#7c5cbf' },
   { id: 'checklist',   label: 'Checklist & Notas', color: '#2EBD8A' },
   { id: 'mensajes',    label: 'Mensajes',          color: '#1a3a5c' },
+  { id: 'links',       label: 'Links',             color: '#3B82F6' },
+  { id: 'gastos',      label: 'Gastos',            color: '#EF4444' },
 ]
 
 function ViajePage() {
@@ -86,6 +90,8 @@ function ViajePage() {
         {seccionActiva === 'mensajes' && (
           <Mensajes viajeId={id} />
         )}
+        {seccionActiva === 'links' && <Links viajeId={id} />}
+        {seccionActiva === 'gastos' && <Gastos viajeId={id} />}
       </main>
 
       <footer className={styles.footer}>
