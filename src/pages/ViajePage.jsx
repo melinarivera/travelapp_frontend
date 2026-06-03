@@ -6,6 +6,7 @@ import api from '../api'
 import styles from './ViajePage.module.css'
 import TicketsYDocs from '../components/TicketsYDocs'
 import ChecklistNotas from '../components/ChecklistNotas'
+import Mensajes from '../components/Mensajes'
 
 function ViajePage() {
   const { id } = useParams()
@@ -34,6 +35,7 @@ function ViajePage() {
     { id: 'itinerario', label: 'Itinerario' },
     { id: 'mapa', label: 'Mapa & POI' },
     { id: 'checklist', label: 'Checklist & Notas' },
+    { id: 'mensajes', label: 'Mensajes', color: '#1a3a5c' },
   ]
 
   return (
@@ -65,6 +67,7 @@ function ViajePage() {
         {seccionActiva === 'itinerario' && <p>Sección itinerario</p>}
         {seccionActiva === 'mapa' && <p>Sección mapa y POI</p>}
         {seccionActiva === 'checklist' && <ChecklistNotas viajeId={id} />}
+        {seccionActiva === 'mensajes' && <Mensajes viajeId={id} />}
       </main>
     </div>
   )
