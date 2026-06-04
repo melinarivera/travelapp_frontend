@@ -70,6 +70,7 @@ function Mensajes({ viajeId }) {
 
   const esMio = (msg) => msg.usuario_id === usuario?.id
   const nombreUsuario = (msg) => msg.perfil?.nombre || 'Usuario'
+  const fotoUsuario = (msg) => msg.perfil?.foto_url || null
 
   return (
     <div className={styles.contenedor}>
@@ -80,41 +81,45 @@ function Mensajes({ viajeId }) {
           <p className={styles.vacio}>No hay mensajes todavía. ¡Sé el primero en escribir!</p>
         ) : (
           mensajes.map(msg => (
-            <div
-              key={msg.id}
-              className={`${styles.burbuja} ${esMio(msg) ? styles.mio : styles.otro}`}
-            >
+            <div key={msg.id} className={`${styles.burbujaWrapper} ${esMio(msg) ? styles.wrapperMio : styles.wrapperOtro}`}>
               {!esMio(msg) && (
-                <span className={styles.nombre}>{nombreUsuario(msg)}</span>
+                fotoUsuario(msg)
+                  ? <img src={fotoUsuario(msg)} alt={nombreUsuario(msg)} className={styles.avatarMsg} />
+                  : <div className={styles.avatarMsgPlaceholder}>{nombreUsuario(msg).charAt(0).toUpperCase()}</div>
               )}
-
-              {msg.respuesta && (
-                <div className={styles.respuestaPreview}>
-                  <span className={styles.respuestaNombre}>
-                    {msg.respuesta.perfil?.nombre || 'Usuario'}
-                  </span>
-                  <span className={styles.respuestaTexto}>{msg.respuesta.contenido}</span>
-                </div>
-              )}
-
-              <p className={styles.texto}>{msg.contenido}</p>
-
-              <div className={styles.meta}>
-                <span className={styles.hora}>{formatearHora(msg.created_at)}</span>
-                <button
-                  className={styles.btnResponder}
-                  onClick={() => setRespondiendo({ id: msg.id, contenido: msg.contenido, nombre: nombreUsuario(msg) })}
-                >
-                  Responder
-                </button>
-                {esMio(msg) && (
-                  <button
-                    className={styles.btnEliminar}
-                    onClick={() => handleEliminar(msg.id)}
-                  >
-                    Eliminar
-                  </button>
+              <div className={`${styles.burbuja} ${esMio(msg) ? styles.mio : styles.otro}`}>
+                {!esMio(msg) && (
+                  <span className={styles.nombre}>{nombreUsuario(msg)}</span>
                 )}
+
+                {msg.respuesta && (
+                  <div className={styles.respuestaPreview}>
+                    <span className={styles.respuestaNombre}>
+                      {msg.respuesta.perfil?.nombre || 'Usuario'}
+                    </span>
+                    <span className={styles.respuestaTexto}>{msg.respuesta.contenido}</span>
+                  </div>
+                )}
+
+                <p className={styles.texto}>{msg.contenido}</p>
+
+                <div className={styles.meta}>
+                  <span className={styles.hora}>{formatearHora(msg.created_at)}</span>
+                  <button
+                    className={styles.btnResponder}
+                    onClick={() => setRespondiendo({ id: msg.id, contenido: msg.contenido, nombre: nombreUsuario(msg) })}
+                  >
+                    Responder
+                  </button>
+                  {esMio(msg) && (
+                    <button
+                      className={styles.btnEliminar}
+                      onClick={() => handleEliminar(msg.id)}
+                    >
+                      Eliminar
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           ))

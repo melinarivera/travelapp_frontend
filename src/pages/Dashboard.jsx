@@ -44,7 +44,12 @@ function Dashboard() {
       <header className={styles.header}>
         <h1 className={styles.logo}>TravelApp</h1>
         <div className={styles.headerDerecha}>
-          <span className={styles.email}>{perfil?.nombre || usuario?.email}</span>
+          <div className={styles.usuarioInfo}>
+            {perfil?.foto_url && (
+              <img src={perfil.foto_url} alt="avatar" className={styles.avatarHeader} />
+            )}
+            <span className={styles.email}>{perfil?.nombre || usuario?.email}</span>
+          </div>
           <button className={styles.btnPerfil} onClick={() => navigate('/perfil')}>
             Mi perfil
           </button>

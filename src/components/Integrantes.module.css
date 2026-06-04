@@ -166,7 +166,14 @@
   background: #ffddd8;
  }
 
-.sinIntegrantes { 
-  font-size: 0.9rem; 
-  color: #bbb; 
+.sinIntegrantes {
+  font-size: 0.9rem;
+  color: #bbb;
   margin: 0; }
+
+.avatarFoto {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}

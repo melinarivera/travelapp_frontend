@@ -176,3 +176,17 @@
   .footer { padding: 28px 20px; }
   .contenido { padding: 24px 16px; }
 }
+
+.usuarioInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.avatarHeader {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
+}

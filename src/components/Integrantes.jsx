@@ -80,12 +80,16 @@ function Integrantes({ viajeId, esTitular }) {
         {integrantes.map(i => (
           <div key={i.id} className={styles.card}>
             {/* Avatar */}
-            <div
-              className={styles.avatar}
-              style={{ background: getColor(i.nombre || i.email) }}
-            >
-              {getIniciales(i.nombre, i.email)}
-            </div>
+            {i.foto_url ? (
+              <img src={i.foto_url} alt={i.nombre || i.email} className={styles.avatarFoto} />
+            ) : (
+              <div
+                className={styles.avatar}
+                style={{ background: getColor(i.nombre || i.email) }}
+              >
+                {getIniciales(i.nombre, i.email)}
+              </div>
+            )}
 
             {/* Nombre */}
             <p className={styles.nombre}>{i.nombre || i.email}</p>
