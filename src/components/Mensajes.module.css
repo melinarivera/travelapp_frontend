@@ -6,6 +6,8 @@
   flex-direction: column;
   max-height: 70vh;
   overflow: hidden;
+  background: #e8f0f7;
+  border-radius: 12px;
 }
 
 .titulo {
@@ -22,10 +24,10 @@
   flex-direction: column;
   gap: 0.75rem;
   padding: 1rem;
-  background: #f9f9f9;
+  background: white;
   border-radius: 12px;
   margin-bottom: 1rem;
-  border: 1px solid #e0e0e0;
+  border: 1.5px solid #1a3a5c;
   min-height: 0;
 }
 
@@ -46,7 +48,7 @@
 
 .mio {
   align-self: flex-end;
-  background: #111;
+  background: #1a3a5c;
   color: white;
   border-bottom-right-radius: 4px;
 }
@@ -62,7 +64,7 @@
 .nombre {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #2EBD8A;
+  color: #1a3a5c;
 }
 
 .respuestaPreview {
@@ -79,7 +81,7 @@
 .respuestaNombre {
   font-size: 0.72rem;
   font-weight: 600;
-  color: #2EBD8A;
+  color: #1a3a5c;
 }
 
 .respuestaTexto {
@@ -182,7 +184,7 @@
 }
 
 .btnEnviar {
-  background: #111;
+  background: #1a3a5c;
   color: white;
   border: none;
   border-radius: 8px;
@@ -198,5 +200,5 @@
 }
 
 .btnEnviar:hover:not(:disabled) {
-  background: #333;
+  background: #2a5a8c;
 }
