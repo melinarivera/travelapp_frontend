@@ -27,7 +27,9 @@ function Mensajes({ viajeId }) {
   }, [viajeId])
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }
   }, [mensajes])
 
   const handleEnviar = async (e) => {
