@@ -242,3 +242,36 @@
 .btnEliminarDep:hover {
   background: #fff5f5;
 }
+
+.seccionPeligro {
+  margin-top: 2rem;
+  border-top: 1px solid #fed7d7;
+  padding-top: 1.5rem;
+}
+
+.subtituloPeligro {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e53e3e;
+  margin-bottom: 0.5rem;
+}
+
+.advertencia {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.btnEliminarCuenta {
+  background: none;
+  border: 1.5px solid #e53e3e;
+  color: #e53e3e;
+  border-radius: 8px;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btnEliminarCuenta:hover {
+  background: #fff5f5;
+}

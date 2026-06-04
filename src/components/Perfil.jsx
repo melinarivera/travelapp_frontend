@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import api from '../api'
 import styles from './Perfil.module.css'
 import { useAuth } from '../context/AuthContext'
 
 function Perfil({ usuario }) {
-  const { cargarPerfil } = useAuth()
+  const { cargarPerfil, cerrarSesion } = useAuth()
+  const navigate = useNavigate()
   const [nombre, setNombre] = useState('')
   const [telefono, setTelefono] = useState('')
   const [fechaNacimiento, setFechaNacimiento] = useState('')
@@ -69,6 +71,18 @@ function Perfil({ usuario }) {
       setDependientes(prev => prev.filter(d => d.id !== id))
     } catch (err) {
       console.error('Error al eliminar dependiente:', err)
+    }
+  }
+
+  const handleEliminarCuenta = async () => {
+    const confirmar = window.confirm('¿Estás segura de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.')
+    if (!confirmar) return
+    try {
+      await api.delete('/api/perfil/cuenta')
+      cerrarSesion()
+      navigate('/')
+    } catch (err) {
+      console.error('Error al eliminar cuenta:', err)
     }
   }
 
@@ -267,6 +281,18 @@ function Perfil({ usuario }) {
             ))}
           </ul>
         )}
+
+        <div className={styles.seccionPeligro}>
+          <h3 className={styles.subtituloPeligro}>Zona de peligro</h3>
+          <p className={styles.advertencia}>Esta acción es irreversible. Se eliminarán todos tus datos.</p>
+          <button
+            className={styles.btnEliminarCuenta}
+            type="button"
+            onClick={handleEliminarCuenta}
+          >
+            Eliminar cuenta
+          </button>
+        </div>
       </div>
     </div>
   )
