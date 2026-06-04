@@ -4,9 +4,11 @@ import styles from './Perfil.module.css'
 import { useAuth } from '../context/AuthContext'
 
 function Perfil({ usuario }) {
-    const { cargarPerfil } = useAuth()
+  const { cargarPerfil } = useAuth()
   const [nombre, setNombre] = useState('')
   const [telefono, setTelefono] = useState('')
+  const [fechaNacimiento, setFechaNacimiento] = useState('')
+  const [ubicacion, setUbicacion] = useState('')
   const [foto, setFoto] = useState(null)
   const [fotoPreview, setFotoPreview] = useState(null)
   const [guardando, setGuardando] = useState(false)
@@ -14,19 +16,21 @@ function Perfil({ usuario }) {
   const fotoRef = useRef(null)
 
   useEffect(() => {
-    const cargarPerfil = async () => {
+    const cargarPerfilLocal = async () => {
       try {
         const res = await api.get('/api/perfil')
         if (res.data.perfil) {
           setNombre(res.data.perfil.nombre || '')
           setTelefono(res.data.perfil.telefono || '')
           setFotoPreview(res.data.perfil.foto_url || null)
+          setFechaNacimiento(res.data.perfil.fecha_nacimiento || '')
+          setUbicacion(res.data.perfil.ubicacion || '')
         }
       } catch (err) {
         console.error('Error al cargar perfil:', err)
       }
     }
-    cargarPerfil()
+    cargarPerfilLocal()
   }, [])
 
   const handleFoto = (e) => {
@@ -45,14 +49,15 @@ function Perfil({ usuario }) {
       const formData = new FormData()
       formData.append('nombre', nombre)
       formData.append('telefono', telefono)
+      formData.append('fecha_nacimiento', fechaNacimiento)
+      formData.append('ubicacion', ubicacion)
       if (foto) formData.append('foto', foto)
-
       await api.post('/api/perfil', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
       setMensaje('Perfil guardado correctamente')
-cargarPerfil()
-setTimeout(() => setMensaje(null), 3000)
+      cargarPerfil()
+      setTimeout(() => setMensaje(null), 3000)
     } catch (err) {
       setMensaje('Error al guardar el perfil')
     } finally {
@@ -63,7 +68,6 @@ setTimeout(() => setMensaje(null), 3000)
   return (
     <div className={styles.contenedor}>
       <h2 className={styles.titulo}>Mi perfil</h2>
-
       <div className={styles.avatar} onClick={() => fotoRef.current.click()}>
         {fotoPreview
           ? <img src={fotoPreview} alt="avatar" className={styles.avatarImg} />
@@ -78,7 +82,6 @@ setTimeout(() => setMensaje(null), 3000)
         onChange={handleFoto}
         style={{ display: 'none' }}
       />
-
       <form className={styles.formulario} onSubmit={handleGuardar}>
         <div className={styles.campo}>
           <label className={styles.label}>Email</label>
@@ -109,13 +112,30 @@ setTimeout(() => setMensaje(null), 3000)
             onChange={e => setTelefono(e.target.value)}
           />
         </div>
-
+        <div className={styles.campo}>
+          <label className={styles.label}>Fecha de nacimiento</label>
+          <input
+            className={styles.input}
+            type="date"
+            value={fechaNacimiento}
+            onChange={e => setFechaNacimiento(e.target.value)}
+          />
+        </div>
+        <div className={styles.campo}>
+          <label className={styles.label}>Ubicación</label>
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="Ciudad, País"
+            value={ubicacion}
+            onChange={e => setUbicacion(e.target.value)}
+          />
+        </div>
         {mensaje && (
           <p className={`${styles.mensaje} ${mensaje.includes('Error') ? styles.error : styles.exito}`}>
             {mensaje}
           </p>
         )}
-
         <button className={styles.btnGuardar} type="submit" disabled={guardando}>
           {guardando ? 'Guardando...' : 'Guardar perfil'}
         </button>
