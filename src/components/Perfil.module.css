@@ -161,3 +161,84 @@
   font-size: 0.9rem;
   cursor: pointer;
 }
+
+.seccionDependientes {
+  margin-top: 2rem;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 1.5rem;
+}
+
+.subtitulo {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.formDependiente {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.sinDependientes {
+  text-align: center;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.listaDependientes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dependienteItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.dependienteInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dependienteIcono {
+  font-size: 1.2rem;
+}
+
+.dependienteNombre {
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: block;
+}
+
+.dependienteFecha {
+  font-size: 0.78rem;
+  color: #888;
+  display: block;
+}
+
+.btnEliminarDep {
+  background: none;
+  border: 1px solid #e53e3e;
+  color: #e53e3e;
+  border-radius: 8px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.btnEliminarDep:hover {
+  background: #fff5f5;
+}

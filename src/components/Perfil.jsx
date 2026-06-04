@@ -12,6 +12,8 @@ function Perfil({ usuario }) {
   const [tarjetaEstudiante, setTarjetaEstudiante] = useState(false)
   const [discapacidad, setDiscapacidad] = useState(false)
   const [personaMayor, setPersonaMayor] = useState(false)
+  const [dependientes, setDependientes] = useState([])
+  const [nuevoDependiente, setNuevoDependiente] = useState({ nombre: '', tipo: 'nino', fecha_nacimiento: '' })
   const [foto, setFoto] = useState(null)
   const [fotoPreview, setFotoPreview] = useState(null)
   const [guardando, setGuardando] = useState(false)
@@ -37,7 +39,38 @@ function Perfil({ usuario }) {
       }
     }
     cargarPerfilLocal()
+    cargarDependientes()
   }, [])
+
+  const cargarDependientes = async () => {
+    try {
+      const res = await api.get('/api/dependientes')
+      setDependientes(res.data.dependientes)
+    } catch (err) {
+      console.error('Error al cargar dependientes:', err)
+    }
+  }
+
+  const handleAgregarDependiente = async (e) => {
+    e.preventDefault()
+    if (!nuevoDependiente.nombre.trim()) return
+    try {
+      await api.post('/api/dependientes', nuevoDependiente)
+      setNuevoDependiente({ nombre: '', tipo: 'nino', fecha_nacimiento: '' })
+      cargarDependientes()
+    } catch (err) {
+      console.error('Error al añadir dependiente:', err)
+    }
+  }
+
+  const handleEliminarDependiente = async (id) => {
+    try {
+      await api.delete(`/api/dependientes/${id}`)
+      setDependientes(prev => prev.filter(d => d.id !== id))
+    } catch (err) {
+      console.error('Error al eliminar dependiente:', err)
+    }
+  }
 
   const handleFoto = (e) => {
     const file = e.target.files[0]
@@ -178,6 +211,63 @@ function Perfil({ usuario }) {
           {guardando ? 'Guardando...' : 'Guardar perfil'}
         </button>
       </form>
+
+      <div className={styles.seccionDependientes}>
+        <h3 className={styles.subtitulo}>Perfiles que gestiono</h3>
+
+        <form className={styles.formDependiente} onSubmit={handleAgregarDependiente}>
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="Nombre *"
+            value={nuevoDependiente.nombre}
+            onChange={e => setNuevoDependiente(prev => ({ ...prev, nombre: e.target.value }))}
+          />
+          <select
+            className={styles.input}
+            value={nuevoDependiente.tipo}
+            onChange={e => setNuevoDependiente(prev => ({ ...prev, tipo: e.target.value }))}
+          >
+            <option value="nino">Niño/a</option>
+            <option value="mascota">Mascota</option>
+          </select>
+          <input
+            className={styles.input}
+            type="date"
+            value={nuevoDependiente.fecha_nacimiento}
+            onChange={e => setNuevoDependiente(prev => ({ ...prev, fecha_nacimiento: e.target.value }))}
+          />
+          <button className={styles.btnGuardar} type="submit">+ Añadir</button>
+        </form>
+
+        {dependientes.length === 0 ? (
+          <p className={styles.sinDependientes}>No hay perfiles todavía.</p>
+        ) : (
+          <ul className={styles.listaDependientes}>
+            {dependientes.map(d => (
+              <li key={d.id} className={styles.dependienteItem}>
+                <div className={styles.dependienteInfo}>
+                  <span className={styles.dependienteIcono}>{d.tipo === 'nino' ? '👶' : '🐾'}</span>
+                  <div>
+                    <span className={styles.dependienteNombre}>{d.nombre}</span>
+                    {d.fecha_nacimiento && (
+                      <span className={styles.dependienteFecha}>
+                        {new Date(d.fecha_nacimiento + 'T00:00:00').toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <button
+                  className={styles.btnEliminarDep}
+                  onClick={() => handleEliminarDependiente(d.id)}
+                >
+                  Eliminar
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   )
 }
