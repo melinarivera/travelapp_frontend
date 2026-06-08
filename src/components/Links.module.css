@@ -1,13 +1,16 @@
 /* AZUL #3B82F6 */
- 
+
 .contenedor {
   max-width: 700px;
   margin: 0 auto;
   padding: 1.5rem;
   background: #eff6ff;
   border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
- 
+
 .formulario {
   display: flex;
   flex-direction: column;
@@ -16,9 +19,8 @@
   border: 1.5px solid #3B82F6;
   border-radius: 12px;
   padding: 1.25rem;
-  margin-bottom: 2rem;
 }
- 
+
 .input {
   padding: 0.6rem 0.9rem;
   border: 1px solid #ccc;
@@ -30,12 +32,12 @@
   background: #f7f7fb;
   transition: border-color 0.2s;
 }
- 
+
 .input:focus {
   border-color: #3B82F6;
   background: white;
 }
- 
+
 .error {
   font-size: 0.85rem;
   color: #e8624a;
@@ -44,7 +46,7 @@
   border-radius: 8px;
   margin: 0;
 }
- 
+
 .btnAgregar {
   background: #3B82F6;
   color: white;
@@ -58,22 +60,60 @@
   font-weight: 600;
   transition: background 0.2s;
 }
- 
-.btnAgregar:hover {
-  background: #2563eb;
+
+.btnAgregar:hover { background: #2563eb; }
+.btnAgregar:disabled { background: #ccc; cursor: not-allowed; }
+
+/* BOX FOTOS */
+.fotosBox {
+  background: white;
+  border: 2px solid #3B82F6;
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
- 
-.btnAgregar:disabled {
-  background: #ccc;
-  cursor: not-allowed;
+
+.fotosHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
- 
+
+.fotosIcono {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.fotosTitulo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.fotosSubtitulo {
+  font-size: 0.78rem;
+  color: #888;
+  margin: 2px 0 0 0;
+}
+
+.sinFotos {
+  font-size: 0.85rem;
+  color: #bbb;
+  text-align: center;
+  padding: 0.5rem 0;
+  margin: 0;
+}
+
+/* LISTA */
 .sinLinks {
   text-align: center;
   color: #999;
-  margin-top: 1rem;
+  margin: 0;
 }
- 
+
 .lista {
   display: flex;
   flex-direction: column;
@@ -82,7 +122,7 @@
   padding: 0;
   margin: 0;
 }
- 
+
 .item {
   display: flex;
   align-items: flex-start;
@@ -93,22 +133,21 @@
   border-radius: 10px;
   padding: 0.85rem 1rem;
   gap: 1rem;
-  transition: border-color 0.2s, transform 0.15s;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
- 
+
 .item:hover {
-  border-color: #3B82F6;
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(59,130,246,0.1);
 }
- 
+
 .infoLink {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
   min-width: 0;
 }
- 
+
 .linkUrl {
   font-weight: 700;
   color: #3B82F6;
@@ -117,23 +156,28 @@
   word-break: break-all;
   transition: color 0.2s;
 }
- 
+
 .linkUrl:hover {
   color: #2563eb;
   text-decoration: underline;
 }
- 
+
 .descripcion {
   font-size: 0.88rem;
   color: #555;
   margin: 0;
 }
- 
+
 .fecha {
   font-size: 0.78rem;
   color: #bbb;
 }
- 
+
+.criador {
+  font-size: 0.75rem;
+  color: #bbb;
+}
+
 .btnEliminar {
   background: none;
   border: 1px solid #e53e3e;
@@ -146,8 +190,5 @@
   font-family: inherit;
   transition: background 0.2s;
 }
- 
-.btnEliminar:hover {
-  background: #fff5f5;
-}
- 
+
+.btnEliminar:hover { background: #fff5f5; }

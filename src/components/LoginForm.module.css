@@ -137,3 +137,13 @@
   padding: 8px 12px;
   border-radius: 8px;
 }
+
+.mensajeRecuperar {
+  font-size: 0.85rem;
+  color: #2EBD8A;
+  background: #edfaf4;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 0;
+}

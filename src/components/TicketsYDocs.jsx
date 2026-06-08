@@ -111,15 +111,16 @@ function TicketsYDocs({ viajeId, esTitular }) {
           {documentos.map(doc => (
             <li key={doc.id} className={styles.item}>
               <div className={styles.infoDoc}>
-                <a className={styles.nombreDoc} href={doc.archivo_url} target="_blank" rel="noreferrer">
-                  {doc.titulo}
-                </a>
-                <span className={styles.metaDoc}>
-                  {doc.lugar && `${doc.lugar}`}
-                  {doc.lugar && doc.fecha && ' · '}
-                  {doc.fecha && `${doc.fecha}`}
-                </span>
-              </div>
+              <a className={styles.nombreDoc} href={doc.archivo_url} target="_blank" rel="noreferrer">
+                {doc.titulo}
+              </a>
+              <span className={styles.metaDoc}>
+                {doc.lugar && `${doc.lugar}`}
+                {doc.lugar && doc.fecha && ' · '}
+                {doc.fecha && `${doc.fecha}`}
+              </span>
+              <span className={styles.criador}>Añadido por {doc.criador_nombre}</span>
+            </div>
               {esTitular && (
                 <button className={styles.btnEliminar} onClick={() => handleEliminar(doc.id)}>
                   Eliminar

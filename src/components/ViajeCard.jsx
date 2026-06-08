@@ -4,15 +4,18 @@ import api from '../api'
 import styles from './ViajeCard.module.css'
 
 const PALETA = [
-  { borda: '#e8624a', bg: '#fff0ee', texto: '#e8624a' },   // coral
-  { borda: '#7c5cbf', bg: '#f0eeff', texto: '#7c5cbf' },   // roxo
-  { borda: '#2EBD8A', bg: '#edfaf4', texto: '#2EBD8A' },   // verde
-  { borda: '#F0A020', bg: '#fff8ee', texto: '#F0A020' },   // laranja
+  { borda: '#e8624a', bg: '#fff0ee', texto: '#e8624a' },
+  { borda: '#7c5cbf', bg: '#f0eeff', texto: '#7c5cbf' },
+  { borda: '#2EBD8A', bg: '#edfaf4', texto: '#2EBD8A' },
+  { borda: '#F0A020', bg: '#fff8ee', texto: '#F0A020' },
 ]
 
 function ViajeCard({ viaje, onActualizado, usuarioId, index = 0 }) {
   const [estado, setEstado] = useState(viaje.estado)
   const [cargando, setCargando] = useState(false)
+  const [editandoFechas, setEditandoFechas] = useState(false)
+  const [fechaInicio, setFechaInicio] = useState(viaje.fecha_inicio?.slice(0, 10) || '')
+  const [fechaFin, setFechaFin] = useState(viaje.fecha_fin?.slice(0, 10) || '')
   const navigate = useNavigate()
   const esTitular = viaje.titular_id === usuarioId
   const cor = PALETA[index % PALETA.length]
@@ -42,11 +45,24 @@ function ViajeCard({ viaje, onActualizado, usuarioId, index = 0 }) {
     }
   }
 
+  const handleGuardarFechas = async () => {
+    setCargando(true)
+    try {
+      await api.patch(`/api/viajes/${viaje.id}`, {
+        fecha_inicio: fechaInicio,
+        fecha_fin: fechaFin
+      })
+      setEditandoFechas(false)
+      if (onActualizado) onActualizado()
+    } catch (err) {
+      console.error('Error al actualizar fechas:', err)
+    } finally {
+      setCargando(false)
+    }
+  }
+
   return (
-    <div
-      className={styles.card}
-      style={{ borderColor: cor.borda }}
-    >
+    <div className={styles.card} style={{ borderColor: cor.borda }}>
       <div className={styles.imagen}>
         {viaje.imagen_url
           ? <img src={viaje.imagen_url} alt={viaje.titulo} />
@@ -61,16 +77,61 @@ function ViajeCard({ viaje, onActualizado, usuarioId, index = 0 }) {
         <h3 className={styles.titulo}>{viaje.titulo}</h3>
         <p className={styles.destino}>{viaje.destino}</p>
 
-        <span
-          className={styles.badge}
-          style={{ background: cor.bg, color: cor.texto }}
-        >
+        <span className={styles.badge} style={{ background: cor.bg, color: cor.texto }}>
           {esTitular ? 'Titular' : 'Integrante'}
         </span>
 
-        <p className={styles.fechas}>
-          {formatearFecha(viaje.fecha_inicio)} → {formatearFecha(viaje.fecha_fin)}
-        </p>
+        {/* FECHAS */}
+        {editandoFechas ? (
+          <div className={styles.editFechas}>
+            <input
+              className={styles.inputFecha}
+              type="date"
+              value={fechaInicio}
+              onChange={e => setFechaInicio(e.target.value)}
+              style={{ borderColor: cor.borda }}
+            />
+            <span className={styles.arrow}>→</span>
+            <input
+              className={styles.inputFecha}
+              type="date"
+              value={fechaFin}
+              onChange={e => setFechaFin(e.target.value)}
+              style={{ borderColor: cor.borda }}
+            />
+            <div className={styles.editBtns}>
+              <button
+                className={styles.btnGuardar}
+                style={{ background: cor.borda }}
+                onClick={handleGuardarFechas}
+                disabled={cargando}
+              >
+                Guardar
+              </button>
+              <button
+                className={styles.btnCancelar}
+                onClick={() => setEditandoFechas(false)}
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className={styles.fechasRow}>
+            <p className={styles.fechas}>
+              {formatearFecha(viaje.fecha_inicio)} → {formatearFecha(viaje.fecha_fin)}
+            </p>
+            {esTitular && (
+              <button
+                className={styles.btnEditFecha}
+                style={{ color: cor.borda }}
+                onClick={() => setEditandoFechas(true)}
+              >
+                ✏️
+              </button>
+            )}
+          </div>
+        )}
 
         {esTitular && (
           <select

@@ -141,7 +141,16 @@ const Itinerario = ({ esAdmin }) => {
                     {/* CARD DEL EVENTO */}
                     <div className={styles.card}>
                       <div className={styles.cardInfo}>
-                        <p className={styles.nombreLocal}>{item.nombre_local}</p>
+                        <p className={styles.nombreLocal}>
+                         <a
+                          href={`https://maps.google.com/?q=${encodeURIComponent(item.nombre_local)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.linkMaps}
+                        >
+                          {item.nombre_local} 📍
+                        </a>
+                      </p>
                         {item.direccion && (
                           <p className={styles.direccion}>📍 {item.direccion}</p>
                         )}
