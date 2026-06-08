@@ -114,3 +114,77 @@
   opacity: 0.9;
   transform: translateY(-1px);
 }
+
+.fechasRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btnEditFecha {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.btnEditFecha:hover { opacity: 1; }
+
+.editFechas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.inputFecha {
+  flex: 1;
+  min-width: 120px;
+  padding: 6px 8px;
+  border: 1.5px solid;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  outline: none;
+  color: #1a1a2e;
+  background: #f7f7fb;
+  color-scheme: light;
+  font-family: inherit;
+}
+
+.arrow { font-size: 0.85rem; color: #aaa; }
+
+.editBtns {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+}
+
+.btnGuardar {
+  flex: 1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.2s;
+}
+.btnGuardar:hover { opacity: 0.9; }
+.btnGuardar:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btnCancelar {
+  flex: 1;
+  background: #f7f7fb;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  color: #888;
+  cursor: pointer;
+  font-family: inherit;
+}
+.btnCancelar:hover { background: #efefef; }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '../context/AuthContext'
 import api from '../api'
 import styles from './Gastos.module.css'
@@ -9,6 +9,7 @@ function Gastos({ viajeId }) {
   const [integrantes, setIntegrantes] = useState([])
   const [cargando, setCargando] = useState(true)
   const [error, setError] = useState('')
+  const comprobanteRef = useRef(null)
 
   const [form, setForm] = useState({
     descripcion: '',
@@ -16,6 +17,7 @@ function Gastos({ viajeId }) {
     pagador_id: '',
     dividido_entre: []
   })
+  const [comprobante, setComprobante] = useState(null)
 
   const cargarDatos = async () => {
     try {
@@ -26,7 +28,6 @@ function Gastos({ viajeId }) {
       setGastos(gastosRes.data.gastos)
       setIntegrantes(integrantesRes.data.integrantes)
 
-      // Por defecto, el pagador es el usuario actual
       if (!form.pagador_id) {
         setForm(prev => ({ ...prev, pagador_id: usuario?.id || '' }))
       }
@@ -72,13 +73,21 @@ function Gastos({ viajeId }) {
     if (form.dividido_entre.length === 0) return setError('Selecciona al menos una persona')
 
     try {
-      await api.post(`/api/viajes/${viajeId}/gastos`, {
-        descripcion: form.descripcion,
-        valor: Number(form.valor),
-        pagador_id: form.pagador_id,
-        dividido_entre: form.dividido_entre
+      // Usa FormData para enviar ficheiro + dados
+      const formData = new FormData()
+      formData.append('descripcion', form.descripcion)
+      formData.append('valor', form.valor)
+      formData.append('pagador_id', form.pagador_id)
+      formData.append('dividido_entre', JSON.stringify(form.dividido_entre))
+      if (comprobante) formData.append('comprobante', comprobante)
+
+      await api.post(`/api/viajes/${viajeId}/gastos`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
       })
+
       setForm({ descripcion: '', valor: '', pagador_id: usuario?.id || '', dividido_entre: [] })
+      setComprobante(null)
+      if (comprobanteRef.current) comprobanteRef.current.value = ''
       cargarDatos()
     } catch (err) {
       setError(err.response?.data?.error || 'Error al añadir el gasto')
@@ -94,16 +103,13 @@ function Gastos({ viajeId }) {
     }
   }
 
-  // Calcula el resumen de balances
   const calcularBalance = () => {
     const balance = {}
     integrantes.forEach(i => { balance[i.usuario_id] = 0 })
 
     gastos.forEach(gasto => {
       const partePorPersona = gasto.valor / gasto.dividido_entre.length
-      // El pagador recibe crédito por todo lo que pagó
       balance[gasto.pagador_id] = (balance[gasto.pagador_id] || 0) + gasto.valor
-      // Cada persona en dividido_entre debe su parte
       gasto.dividido_entre.forEach(userId => {
         balance[userId] = (balance[userId] || 0) - partePorPersona
       })
@@ -133,7 +139,7 @@ function Gastos({ viajeId }) {
         </div>
       </div>
 
-      {/* BALANCE POR PERSONA */}
+      {/* BALANCE */}
       {integrantes.length > 0 && (
         <div className={styles.balanceBox}>
           <h3 className={styles.balanceTitulo}>Balance</h3>
@@ -209,6 +215,20 @@ function Gastos({ viajeId }) {
           </div>
         </div>
 
+        <div className={styles.campo}>
+          <label className={styles.label}>Comprobante (opcional)</label>
+          <input
+            ref={comprobanteRef}
+            className={styles.inputArchivo}
+            type="file"
+            accept="image/*,.pdf"
+            onChange={e => setComprobante(e.target.files[0] || null)}
+          />
+          {comprobante && (
+            <span className={styles.archivoNombre}>📎 {comprobante.name}</span>
+          )}
+        </div>
+
         {error && <p className={styles.error}>{error}</p>}
 
         <button className={styles.btnAgregar} type="submit">
@@ -232,6 +252,16 @@ function Gastos({ viajeId }) {
                 <span className={styles.gastoDividido}>
                   Dividido entre: {gasto.dividido_entre.map(id => getNombre(id)).join(', ')}
                 </span>
+                {gasto.comprobante_url && (
+                  <a
+                    href={gasto.comprobante_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.verComprobante}
+                  >
+                    📎 Ver comprobante
+                  </a>
+                )}
               </div>
               <button
                 className={styles.btnEliminar}

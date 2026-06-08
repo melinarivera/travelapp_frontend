@@ -110,15 +110,26 @@ const confirmarAdicionarAoItinerario = async () => {
         <button type="submit" className={styles.btn}>Adicionar</button>
       </form>
 
-      <div className={styles.ranking}>
-        {lugares.map((lugar) => (
-          <div key={lugar.id} className={styles.item}>
+<div className={styles.ranking}>
+  {lugares.map((lugar) => (
+    <div key={lugar.id} className={styles.item}>
+      <div>
             <span>
-              {lugar.nombre} <strong>({lugar.puntuacion_total || 0} pts)</strong>
-            </span>
-            <div className={styles.votos}>
-              <button onClick={() => votar(lugar.id, 'up')}>👍 {lugar.votos_positivos}</button>
-              <button onClick={() => votar(lugar.id, 'down')}>👎 {lugar.votos_negativos}</button>
+            <a
+        href={`https://maps.google.com/?q=${encodeURIComponent(lugar.nombre)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.linkMaps}
+      >
+        {lugar.nombre} 📍
+      </a>
+      <strong> ({lugar.puntuacion_total || 0} pts)</strong>
+    </span>
+        <p className={styles.criador}>Sugerido por {lugar.criador_nombre}</p>
+      </div>
+      <div className={styles.votos}>
+        <button onClick={() => votar(lugar.id, 'up')}>👍 {lugar.votos_positivos}</button>
+        <button onClick={() => votar(lugar.id, 'down')}>👎 {lugar.votos_negativos}</button>
 
            
               {esAdmin && (

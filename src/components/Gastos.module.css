@@ -302,3 +302,26 @@
 .btnEliminar:hover {
   background: #fff5f5;
 }
+
+.inputArchivo {
+  font-size: 0.88rem;
+  color: #888;
+  padding: 4px 0;
+}
+
+.archivoNombre {
+  font-size: 0.82rem;
+  color: #EF4444;
+  font-weight: 500;
+}
+
+.verComprobante {
+  font-size: 0.82rem;
+  color: #EF4444;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.verComprobante:hover {
+  text-decoration: underline;
+}

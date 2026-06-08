@@ -265,3 +265,20 @@
   cursor: not-allowed;
   transform: none;
 }
+
+.criador {
+  font-size: 0.75rem;
+  color: #bbb;
+  margin: 2px 0 0 0;
+}
+
+.linkMaps {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.linkMaps:hover {
+  color: #e8624a;
+  text-decoration: underline;
+}

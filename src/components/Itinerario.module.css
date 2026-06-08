@@ -245,3 +245,14 @@
   .card { flex-direction: column; align-items: flex-start; gap: 12px; }
   .deleteBtn { align-self: flex-end; }
 }
+
+.linkMaps {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.linkMaps:hover {
+  color: #e8624a;
+  text-decoration: underline;
+}

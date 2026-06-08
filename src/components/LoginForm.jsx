@@ -5,12 +5,17 @@ import { useAuth } from '../context/AuthContext'
 import api from '../api'
 import styles from './LoginForm.module.css'
 
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
+
 function LoginForm({ onSwitch }) {
   const [verPassword, setVerPassword] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [cargando, setCargando] = useState(false)
+  const [recuperando, setRecuperando] = useState(false)
+  const [mensajeRecuperar, setMensajeRecuperar] = useState('')
 
   const { setUsuario } = useAuth()
   const navigate = useNavigate()
@@ -19,7 +24,6 @@ function LoginForm({ onSwitch }) {
     e.preventDefault()
     setCargando(true)
     setError('')
-
     try {
       const res = await api.post('/api/auth/login', { email, password })
       localStorage.setItem('token', res.data.session.access_token)
@@ -32,6 +36,20 @@ function LoginForm({ onSwitch }) {
       setCargando(false)
     }
   }
+
+const handleRecuperar = async () => {
+  if (!email.trim()) return setError('Introduce tu email primero')
+  setRecuperando(true)
+  setError('')
+  try {
+    await api.post('/api/auth/recuperar-password', { email })
+    setMensajeRecuperar('✅ Te hemos enviado un email para recuperar tu contraseña.')
+  } catch (err) {
+    setError('Error al enviar el email. Comprueba la dirección.')
+  } finally {
+    setRecuperando(false)
+  }
+}
 
   return (
     <div className={styles.contenedor}>
@@ -65,7 +83,17 @@ function LoginForm({ onSwitch }) {
           </button>
         </div>
 
-        <p className={styles.olvidaste}>¿Olvidaste tu contraseña?</p>
+        {mensajeRecuperar ? (
+          <p className={styles.mensajeRecuperar}>{mensajeRecuperar}</p>
+        ) : (
+          <p
+            className={styles.olvidaste}
+            onClick={handleRecuperar}
+            style={{ cursor: recuperando ? 'wait' : 'pointer' }}
+          >
+            {recuperando ? 'Enviando...' : '¿Olvidaste tu contraseña?'}
+          </p>
+        )}
 
         {error && <p className={styles.error}>{error}</p>}
 
